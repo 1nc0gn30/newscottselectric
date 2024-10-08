@@ -24,7 +24,7 @@ const HeroSection = () => {
           padding: '20px 20px',
           overflow: 'hidden',
           background: 'rgba(0, 0, 0, 1)',
-          zIndex: '-1',
+          zIndex: '',
         }}
       >
         {/* Spline scene background */}
@@ -36,7 +36,7 @@ const HeroSection = () => {
             left: 0,
             width: '100%',
             height: '100%',
-            zIndex: -1,
+            zIndex: 1,
             borderRadius: '100%',
           }}
         />
