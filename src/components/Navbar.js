@@ -168,31 +168,20 @@ const Navbar = () => {
               >
                 <Box
                   component="img"
-                  src="/assets/images/ScottsElectricLogo.png"
+                  src="/assets/images/scottselectriclogo2.png"
                   alt="Scott's Electric Logo"
                   sx={{
-                    height: 60,
+                    height: 100,
                     width: 'auto',
                     borderRadius: 100,
+                    marginBottom: 2,
                     [theme.breakpoints.down('sm')]: {
-                      height: 45,
+                      height: 80,
                     },
                   }}
                 />
               </Fab>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                  marginTop: theme.spacing(1),
-                  fontFamily: 'Pacifico',
-                  [theme.breakpoints.down('sm')]: {
-                    fontSize: '0.8rem',
-                  },
-                }}
-              >
-                Scott's Electric
-              </Typography>
+              
             </Box>
 
             <Box sx={{ display: 'flex', gap: 4, flexGrow: 1, justifyContent: 'space-evenly' }}>
