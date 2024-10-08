@@ -29,7 +29,7 @@ const HeroSection = () => {
       >
         {/* Spline scene background */}
         <Spline
-          scene="https://prod.spline.design/9AK2O4S7RU7etXle/scene.splinecode"
+          scene="https://prod.spline.design/qmqQ5C2657rMWzfL/scene.splinecode"
           style={{
             position: 'absolute',
             top: 0,
@@ -41,47 +41,8 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Vignette Overlay */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 0,
-            pointerEvents: 'none',
-            background: `radial-gradient(
-              circle, 
-              rgba(0, 0, 0, 0.7) 10%, 
-              rgba(0, 0, 0, 1) 100%
-            )`,
-          }}
-        />
-
-        {/* Title Overlay */}
-        <Box
-          sx={{
-            zIndex: 1,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            padding: theme.spacing(4),
-            borderRadius: '8px',
-          }}
-        >
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              fontWeight: 'bold',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: theme.palette.primary.contrastText,
-              fontSize: { xs: '1.7rem', md: '5rem' },
-            }}
-          >
-            Welcome to Scott's Electric
-          </Typography>
-        </Box>
+      
+       
       </Box>
 
       <Container

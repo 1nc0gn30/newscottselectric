@@ -11,16 +11,16 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import { Box, Fab } from '@mui/material';
 import Slide from '@mui/material/Slide';
-import HomeIcon from '@mui/icons-material/Home';
-import BuildIcon from '@mui/icons-material/Build';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import InfoIcon from '@mui/icons-material/Info';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import BuildCircleRoundedIcon from '@mui/icons-material/BuildCircleRounded';
+import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 
 const Navbar = () => {
   const theme = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const lastScrollTop = useRef(0); // Use useRef to persist value between renders
+  const lastScrollTop = useRef(0);
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -32,28 +32,24 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop.current) {
-        setShowNavbar(false); // Hide on downscroll
-      } else {
-        setShowNavbar(true); // Show on upscroll
-      }
-      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop; // Mobile/Negative scroll fix
+      setShowNavbar(scrollTop < lastScrollTop.current);
+      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // No external dependencies required
+  }, []);
 
   const navItemsLeft = [
-    { text: 'Home', id: 'home', icon: <HomeIcon sx={{ fontSize: 30 }} /> },
-    { text: 'Services', id: 'services', icon: <BuildIcon sx={{ fontSize: 30 }} /> },
+    { text: 'Home', id: 'home', icon: <HomeRoundedIcon sx={{ fontSize: 35 }} /> },
+    { text: 'Services', id: 'services', icon: <BuildCircleRoundedIcon sx={{ fontSize: 35 }} /> },
   ];
 
   const navItemsRight = [
-    { text: 'Contact', id: 'contact', icon: <ContactMailIcon sx={{ fontSize: 30 }} /> },
-    { text: 'About', id: 'about', icon: <InfoIcon sx={{ fontSize: 30 }} /> },
+    { text: 'Contact', id: 'contact', icon: <ContactMailRoundedIcon sx={{ fontSize: 35 }} /> },
+    { text: 'About', id: 'about', icon: <InfoRoundedIcon sx={{ fontSize: 35 }} /> },
   ];
 
   const drawerContent = (
@@ -63,8 +59,6 @@ const Navbar = () => {
         backgroundColor: theme.palette.background.paper,
         height: '100%',
         paddingTop: theme.spacing(2),
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(2),
         textAlign: 'center',
       }}
       onClick={toggleDrawer(false)}
@@ -101,7 +95,15 @@ const Navbar = () => {
   return (
     <>
       <Slide direction="up" in={showNavbar} mountOnEnter unmountOnExit>
-        <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.95)', boxShadow: 'none' }}>
+        <AppBar
+          position="fixed"
+          sx={{
+            top: 'auto',
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            boxShadow: 'none',
+          }}
+        >
           <Toolbar
             sx={{
               display: 'flex',
@@ -113,7 +115,15 @@ const Navbar = () => {
               },
             }}
           >
-            <Box sx={{ display: 'flex', gap: 4, flexGrow: 1, justifyContent: 'space-evenly' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 4,
+                justifyContent: 'space-evenly',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
               {navItemsLeft.map((item) => (
                 <ScrollLink
                   key={item.text}
@@ -124,7 +134,14 @@ const Navbar = () => {
                   offset={-70}
                   style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                    }}
+                  >
                     {item.icon}
                     <Typography
                       sx={{
@@ -142,26 +159,22 @@ const Navbar = () => {
                   </Box>
                 </ScrollLink>
               ))}
-            </Box>
 
-            <Box sx={{ textAlign: 'center' }}>
               <Fab
                 component={RouterLink}
                 to="/"
                 sx={{
-                  height: 80,
-                  width: 80,
-                  borderRadius: '50%',
+                  height: 100,
+                  width: 100,
+                  borderRadius: '100%',
                   backgroundColor: theme.palette.primary.main,
-                  position: 'relative',
-                  top: '0px',
                   boxShadow: theme.shadows[6],
                   '&:hover': {
                     backgroundColor: theme.palette.primary.dark,
                   },
                   [theme.breakpoints.down('sm')]: {
-                    height: 60,
-                    width: 60,
+                    height: 90,
+                    width: 90,
                   },
                 }}
                 aria-label="logo"
@@ -171,20 +184,13 @@ const Navbar = () => {
                   src="/assets/images/scottselectriclogo2.png"
                   alt="Scott's Electric Logo"
                   sx={{
-                    height: 100,
-                    width: 'auto',
-                    borderRadius: 100,
-                    marginBottom: 2,
-                    [theme.breakpoints.down('sm')]: {
-                      height: 80,
-                    },
+                    height: 'auto',
+                    width: '100%',
+                    borderRadius: '100%',
                   }}
                 />
               </Fab>
-              
-            </Box>
 
-            <Box sx={{ display: 'flex', gap: 4, flexGrow: 1, justifyContent: 'space-evenly' }}>
               {navItemsRight.map((item) => (
                 <ScrollLink
                   key={item.text}
@@ -195,7 +201,14 @@ const Navbar = () => {
                   offset={-70}
                   style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                    }}
+                  >
                     {item.icon}
                     <Typography
                       sx={{
