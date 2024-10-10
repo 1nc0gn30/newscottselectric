@@ -123,7 +123,10 @@ const ServiceList = () => {
   const theme = useTheme();
 
   return (
-    <Container sx={{ paddingY: theme.spacing(8) }}>
+    <Container sx={{ 
+      paddingY: theme.spacing(8), 
+      backgroundColor: theme.palette.background.default // Set container background 
+    }}>
       <Typography
         id="services"
         variant="h3"
@@ -132,7 +135,7 @@ const ServiceList = () => {
         sx={{
           marginBottom: theme.spacing(4),
           fontWeight: 'bold',
-          color: theme.palette.primary.main,
+          color: '#ffc107', // Gold color for the heading
           fontSize: '4rem'
         }}
       >
@@ -146,26 +149,23 @@ const ServiceList = () => {
         {services.map((service, index) => (
           <Grid2
             item
-            size={{ xs: 12 }} // Ensures one grid2 per row
+            xs={12} // One service per row on all screen sizes
             key={index}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
+            sx={{ display: 'flex', justifyContent: 'center' }}
           >
             <Paper
               elevation={10}
               sx={{
-                width: { md: '550px', xs: '90vw' }, // Set fixed width
-                height: 'auto', // Set fixed height
+                width: { md: '550px', xs: '90vw' },
                 padding: theme.spacing(3),
                 textAlign: 'center',
-                backgroundColor: theme.palette.background.paper,
+                backgroundColor: '#222', // Dark background for the card
                 borderRadius: theme.shape.borderRadius,
+                color: '#eee', // Off-white text color
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 '&:hover': {
                   transform: 'scale(1.05)',
-                  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.1)',
+                  boxShadow: '0 6px 20px rgba(255, 255, 0, 0.3)', // Yellow-tinted shadow on hover
                 },
               }}
             >
@@ -176,7 +176,7 @@ const ServiceList = () => {
                 sx={{
                   width: '100%',
                   height: 'auto',
-                  backgroundColor: theme.palette.grey[300],
+                  backgroundColor: theme.palette.grey[800], // Darker grey for image background
                   borderRadius: theme.shape.borderRadius,
                   marginBottom: theme.spacing(2),
                 }}
@@ -185,7 +185,7 @@ const ServiceList = () => {
                 variant="h6"
                 sx={{
                   fontWeight: 'bold',
-                  color: theme.palette.primary.main,
+                  color: '#ffc107', // Gold color for the title
                   marginBottom: theme.spacing(1),
                 }}
               >
@@ -194,7 +194,6 @@ const ServiceList = () => {
               <Typography
                 sx={{
                   fontSize: '1rem',
-                  color: theme.palette.text.primary,
                   marginBottom: theme.spacing(2),
                   fontWeight: 600,
                 }}
@@ -205,7 +204,7 @@ const ServiceList = () => {
                 sx={{
                   fontSize: '0.9rem',
                   fontStyle: 'italic',
-                  color: theme.palette.text.primary,
+                  color: '#ccc', // Lighter text color for case scenario
                 }}
               >
                 {service.caseScenario}

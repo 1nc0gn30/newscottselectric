@@ -35,9 +35,8 @@ const HeroSection = () => {
             top: 0,
             left: 0,
             width: '100%',
-            height: '100%',
+            height: '100vh',
             zIndex: 1,
-            borderRadius: '100%',
           }}
         />
 
@@ -67,6 +66,7 @@ const HeroSection = () => {
                 fontWeight: 'bold',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
+                textAlign: "center",
                 color: theme.palette.primary.contrastText,
                 marginBottom: theme.spacing(2),
               }}

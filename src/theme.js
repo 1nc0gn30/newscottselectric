@@ -12,7 +12,7 @@ const theme = createTheme({
       contrastText: '#333', // Dark grey text on secondary buttons
     },
     background: {
-      default: '#F8F9FA', // Soft White background for pages
+      default: '#000000', // Soft White background for pages
       paper: '#fff', // White background for Paper components (cards, modals, etc.)
     },
     text: {

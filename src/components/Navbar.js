@@ -9,7 +9,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
-import { Box, Fab } from '@mui/material';
+import { Box } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import BuildCircleRoundedIcon from '@mui/icons-material/BuildCircleRounded';
@@ -160,36 +160,23 @@ const Navbar = () => {
                 </ScrollLink>
               ))}
 
-              <Fab
-                component={RouterLink}
-                to="/"
-                sx={{
-                  height: 100,
-                  width: 100,
-                  borderRadius: '100%',
-                  backgroundColor: theme.palette.primary.main,
-                  boxShadow: theme.shadows[6],
-                  '&:hover': {
-                    backgroundColor: theme.palette.primary.dark,
-                  },
-                  [theme.breakpoints.down('sm')]: {
-                    height: 90,
-                    width: 90,
-                  },
-                }}
-                aria-label="logo"
-              >
+              <RouterLink to="/" style={{ textDecoration: 'none' }}>
                 <Box
                   component="img"
                   src="/assets/images/scottselectriclogo2.png"
                   alt="Scott's Electric Logo"
                   sx={{
-                    height: 'auto',
-                    width: '100%',
+                    height: 100,
+                    width: 100,
                     borderRadius: '100%',
+                    cursor: 'pointer',
+                    [theme.breakpoints.down('sm')]: {
+                      height: 90,
+                      width: 90,
+                    },
                   }}
                 />
-              </Fab>
+              </RouterLink>
 
               {navItemsRight.map((item) => (
                 <ScrollLink

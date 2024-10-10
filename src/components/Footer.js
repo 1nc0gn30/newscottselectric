@@ -3,56 +3,67 @@ import { Container, Typography, Box, IconButton, Link, Grid } from '@mui/materia
 import { makeStyles } from '@mui/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
-import GoogleIcon from '@mui/icons-material/Google'; // Replacing MapIcon with Google Icon
+import GoogleIcon from '@mui/icons-material/Google';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    background: 'linear-gradient(45deg, #333, #111)', // Modern gradient background
-    color: '#fff',
-    padding: '3rem 0',
+    background: 'linear-gradient(to right, #222, #000)', // Darker gradient
+    color: '#eee', // Off-white text for better contrast
+    padding: '4rem 0',
     marginTop: 'auto',
-    boxShadow: '0px -4px 20px rgba(0,0,0,0.7)', // Subtle top shadow for depth
+    boxShadow: '0px -5px 25px rgba(255, 255, 0, 0.3)', // Yellow-tinted shadow
   },
   footerContent: {
     display: 'flex',
-    justifyContent: 'center', // Ensure content is centered
-    alignItems: 'center',
+    justifyContent: 'space-around', // Distribute content evenly
+    alignItems: 'flex-start', // Align items to the top
     textAlign: 'center',
     flexWrap: 'wrap',
-    gap: '1.5rem',
+    gap: '2rem',
   },
   iconLinks: {
     display: 'flex',
-    justifyContent: 'center', // Center the icons
+    flexDirection: 'column', // Stack icons vertically
     alignItems: 'center',
-    gap: '2.5rem',
-    marginTop: theme.spacing(2),
+    gap: '1rem',
   },
   iconButton: {
-    color: '#fff',
-    transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+    color: '#eee',
+    backgroundColor: 'rgba(255, 255, 0, 0.2)', // Yellow background with transparency
+    padding: theme.spacing(2),
+    borderRadius: '50%', // Circular buttons
+    transition: 'transform 0.3s ease, background-color 0.3s ease',
     '&:hover': {
-      color: '#00bfff', // Electric blue hover effect
-      transform: 'scale(1.2)', // Slight scale effect on hover for interactivity
+      backgroundColor: '#ff0', // Solid yellow on hover
+      transform: 'scale(1.1)',
     },
   },
   footerText: {
-    fontSize: '1rem',
-    fontWeight: 500,
+    fontSize: '1.1rem',
+    fontWeight: 600,
+    marginBottom: theme.spacing(2),
   },
   footerDivider: {
     height: '2px',
-    backgroundColor: '#555',
-    margin: theme.spacing(2, 0),
+    backgroundColor: '#ffc107', // Gold divider
+    margin: theme.spacing(3, 0),
+    width: '100%',
   },
   footerIconText: {
-    fontSize: '0.8rem',
-    color: '#aaa',
+    fontSize: '0.9rem',
+    color: '#ccc',
+    marginTop: theme.spacing(1),
   },
   contactText: {
-    fontSize: '1.1rem',
+    fontSize: '2.7rem',
     color: '#fff',
-    fontWeight: 600,
+    fontWeight: 700,
+    marginBottom: theme.spacing(3),
+  },
+  copyright: {
+    fontSize: '0.9rem',
+    color: '#bbb',
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -63,64 +74,70 @@ const Footer = () => {
     <Box component="footer" className={classes.footer}>
       <Container>
         <Grid container className={classes.footerContent}>
-          {/* Footer Text and Contact Info */}
-          <Grid item xs={12}>
-            <Typography variant="body2" className={classes.footerText}>
-              &copy; 2024 Scott's Electric. All rights reserved.
+          {/* Contact Info */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h4" className={classes.contactText}>
+              Contact Us
             </Typography>
-            <Box className={classes.footerDivider}></Box>
-            <Typography variant="body2" className={classes.contactText}>
-              info@scottselectric.com | (123) 456-7890
+            <Typography variant="body2" className={classes.footerText}>
+              info@scottselectric.com
+            </Typography>
+            <Typography variant="body2" className={classes.footerText}>
+              (123) 456-7890
             </Typography>
           </Grid>
 
           {/* Icon Links */}
-          <Grid item xs={12}>
+          <Grid item xs={12} md={4}>
             <Box className={classes.iconLinks}>
-              <Box textAlign="center">
-                <IconButton
-                  component={Link}
-                  href="mailto:info@scottselectric.com"
-                  className={classes.iconButton}
-                  aria-label="Email"
-                >
-                  <EmailIcon fontSize="large" />
-                </IconButton>
-                <Typography variant="body2" className={classes.footerIconText}>
-                  Email Us
-                </Typography>
-              </Box>
-              <Box textAlign="center">
-                <IconButton
-                  component={Link}
-                  href="tel:1234567890"
-                  className={classes.iconButton}
-                  aria-label="Phone"
-                >
-                  <PhoneIcon fontSize="large" />
-                </IconButton>
-                <Typography variant="body2" className={classes.footerIconText}>
-                  Call Us
-                </Typography>
-              </Box>
-              <Box textAlign="center">
-                <IconButton
-                  component={Link}
-                  href="https://google.com"
-                  target="_blank"
-                  rel="noopener"
-                  className={classes.iconButton}
-                  aria-label="Google"
-                >
-                  <GoogleIcon fontSize="large" />
-                </IconButton>
-                <Typography variant="body2" className={classes.footerIconText}>
-                  Find Us on Google
-                </Typography>
-              </Box>
+              <IconButton
+                component={Link}
+                href="mailto:info@scottselectric.com"
+                className={classes.iconButton}
+                aria-label="Email"
+              >
+                <EmailIcon fontSize="large" sx={{color: 'white'}} />
+              </IconButton>
+              <Typography variant="body2" className={classes.footerIconText}>
+                Email Us
+              </Typography>
+
+              <IconButton
+                component={Link}
+                href="tel:1234567890"
+                className={classes.iconButton}
+                aria-label="Phone"
+              >
+                <PhoneIcon fontSize="large" sx={{color: 'white'}} />
+              </IconButton>
+              <Typography variant="body2" className={classes.footerIconText}>
+                Call Us
+              </Typography>
+
+              <IconButton
+                component={Link}
+                href="https://google.com"
+                target="_blank"
+                rel="noopener"
+                className={classes.iconButton}
+                aria-label="Google"
+              >
+                <GoogleIcon fontSize="large" sx={{color: 'white'}} />
+              </IconButton>
+              <Typography variant="body2" className={classes.footerIconText}>
+                Find Us on Google
+              </Typography>
             </Box>
           </Grid>
+
+          {/* Copyright */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="body2" className={classes.copyright}>
+              &copy; 2024 Scott's Electric. All rights reserved.
+            </Typography>
+          </Grid>
         </Grid>
+        <Box className={classes.footerDivider}></Box> {/* Divider below all content */}
       </Container>
     </Box>
   );
