@@ -8,7 +8,7 @@ const theme = createTheme({
       contrastText: '#fff', // White text on primary buttons
     },
     secondary: {
-      main: '#FFD60A', // Secondary color: Sunlight Yellow
+      main: '#B3AD1F', // Secondary color: Sunlight Yellow
       contrastText: '#333', // Dark grey text on secondary buttons
     },
     background: {

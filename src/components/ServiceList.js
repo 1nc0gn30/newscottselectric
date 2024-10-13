@@ -135,7 +135,7 @@ const ServiceList = () => {
         sx={{
           marginBottom: theme.spacing(4),
           fontWeight: 'bold',
-          color: '#ffc107', // Gold color for the heading
+          color: '#B3AD1F', // Gold color for the heading
           fontSize: '4rem'
         }}
       >
@@ -164,8 +164,7 @@ const ServiceList = () => {
                 color: '#eee', // Off-white text color
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 '&:hover': {
-                  transform: 'scale(1.05)',
-                  boxShadow: '0 6px 20px rgba(255, 255, 0, 0.3)', // Yellow-tinted shadow on hover
+                  transform: 'scale(0.95)',
                 },
               }}
             >
@@ -185,7 +184,7 @@ const ServiceList = () => {
                 variant="h6"
                 sx={{
                   fontWeight: 'bold',
-                  color: '#ffc107', // Gold color for the title
+                  color: '#B3AD1F', // Gold color for the title
                   marginBottom: theme.spacing(1),
                 }}
               >

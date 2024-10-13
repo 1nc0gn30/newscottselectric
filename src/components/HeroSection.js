@@ -1,10 +1,19 @@
-import React from 'react';
+// src/components/HeroSection.js
+import React, { Suspense } from 'react';
 import { Container, Typography, Button, Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Spline from '@splinetool/react-spline';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import ConstructionIcon from '@mui/icons-material/Construction';
+
+// Import the model components (code-splitting)
+const CoinModel = React.lazy(() => import('./CoinModel'));
+const CircuitBreakerModel = React.lazy(() => import('./CircuitBreakerModel'));
+const MultimeterModel = React.lazy(() => import('./MultimeterModel'));
+const KleinsModel = React.lazy(() => import('./KleinsModel'));
+const GlowEffect = React.lazy(() => import('./GlowEffect'));
 
 const HeroSection = () => {
   const theme = useTheme();
@@ -23,13 +32,13 @@ const HeroSection = () => {
           textAlign: 'center',
           padding: '20px 20px',
           overflow: 'hidden',
-          background: 'rgba(0, 0, 0, 1)',
+          background: 'black',
           zIndex: '',
         }}
+        id="#home"
       >
-        {/* Spline scene background */}
-        <Spline
-          scene="https://prod.spline.design/qmqQ5C2657rMWzfL/scene.splinecode"
+        {/* Three.js Canvas */}
+        <Canvas
           style={{
             position: 'absolute',
             top: 0,
@@ -38,22 +47,34 @@ const HeroSection = () => {
             height: '100vh',
             zIndex: 1,
           }}
-        />
+          shadows
+        >
+          <ambientLight intensity={0.3} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
+          <pointLight position={[-10, -10, -10]} intensity={1} />
+          
+          <Suspense fallback={null}>
+            <CoinModel />
+            <CircuitBreakerModel />
+            <MultimeterModel />
+            <KleinsModel />
+            <GlowEffect />
+          </Suspense>
 
-      
-       
+        
+        </Canvas>
       </Box>
 
       <Container
         sx={{
           zIndex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.9)', // Subtle transparency effect
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
           padding: theme.spacing(6),
           borderRadius: theme.shape.borderRadius,
           maxWidth: '800px',
           marginTop: 2,
           boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.3)',
-          backdropFilter: 'blur(5px)', // Blurred background for modern feel
+          backdropFilter: 'blur(5px)',
           position: 'relative',
         }}
       >
@@ -66,7 +87,7 @@ const HeroSection = () => {
                 fontWeight: 'bold',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                textAlign: "center",
+                textAlign: 'center',
                 color: theme.palette.primary.contrastText,
                 marginBottom: theme.spacing(2),
               }}
@@ -75,6 +96,7 @@ const HeroSection = () => {
               Hampton Roads' Most Trusted Electricians
             </Typography>
           </Grid>
+
           <Grid item xs={12}>
             <Typography
               variant="body1"
@@ -82,7 +104,7 @@ const HeroSection = () => {
                 fontSize: '1.25rem',
                 marginBottom: theme.spacing(4),
                 color: theme.palette.text.secondary,
-                lineHeight: 1.7, // Improve readability
+                lineHeight: 1.7,
               }}
             >
               With over a decade of experience, Scott's Electric is your go-to provider for safe, reliable, and efficient electrical services. From residential and commercial installations to solar panel setup, EV charger installations, and emergency repairs, we handle it all. Our team of certified electricians is committed to delivering the highest level of service, ensuring your safety and satisfaction.

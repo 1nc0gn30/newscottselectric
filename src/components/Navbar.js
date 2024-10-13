@@ -11,10 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import Slide from '@mui/material/Slide';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import BuildCircleRoundedIcon from '@mui/icons-material/BuildCircleRounded';
-import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 
 const Navbar = () => {
   const theme = useTheme();
@@ -43,13 +39,53 @@ const Navbar = () => {
   }, []);
 
   const navItemsLeft = [
-    { text: 'Home', id: 'home', icon: <HomeRoundedIcon sx={{ fontSize: 35 }} /> },
-    { text: 'Services', id: 'services', icon: <BuildCircleRoundedIcon sx={{ fontSize: 35 }} /> },
+    { text: 'Home', id: '#home', icon: (
+      <Box
+        component="img"
+        src="/assets/images/HomeIcon.png" // Replace with the path to your PNG
+        alt="Home Icon"
+        sx={{
+          width: 35, // Adjust the size accordingly
+          height: 35,
+        }}
+      />
+    ), },
+    { text: 'Services', id: 'services', icon: (
+      <Box
+        component="img"
+        src="/assets/images/ServicesIcon.png" // Replace with the path to your PNG
+        alt="Home Icon"
+        sx={{
+          width: 35, // Adjust the size accordingly
+          height: 35,
+        }}
+      />
+    ), },
   ];
 
   const navItemsRight = [
-    { text: 'Contact', id: 'contact', icon: <ContactMailRoundedIcon sx={{ fontSize: 35 }} /> },
-    { text: 'About', id: 'about', icon: <InfoRoundedIcon sx={{ fontSize: 35 }} /> },
+    { text: 'Contact', id: 'contact', icon: (
+      <Box
+        component="img"
+        src="/assets/images/ContactIcon.png" // Replace with the path to your PNG
+        alt="Home Icon"
+        sx={{
+          width: 35, // Adjust the size accordingly
+          height: 35,
+        }}
+      />
+    ), },
+    { text: 'About', id: 'about', icon: (
+      <Box
+        component="img"
+        src="/assets/images/AboutIcon.png" // Replace with the path to your PNG
+        alt="Home Icon"
+        sx={{
+          width: 35, // Adjust the size accordingly
+          height: 35,
+        }}
+      />
+    ), },
   ];
 
   const drawerContent = (
@@ -102,6 +138,7 @@ const Navbar = () => {
             bottom: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.95)',
             boxShadow: 'none',
+            height: '120px',
           }}
         >
           <Toolbar
