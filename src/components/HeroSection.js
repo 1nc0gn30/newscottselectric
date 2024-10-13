@@ -3,7 +3,6 @@ import React, { Suspense } from 'react';
 import { Container, Typography, Button, Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import ConstructionIcon from '@mui/icons-material/Construction';

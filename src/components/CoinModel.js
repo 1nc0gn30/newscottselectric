@@ -1,7 +1,6 @@
 // src/components/CoinModel.js
 import React, { useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const CoinModel = () => {
