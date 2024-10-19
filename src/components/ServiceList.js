@@ -154,8 +154,9 @@ const ServiceList = () => {
   alt="Our Services"
   sx={{
     
-    width: 'auto',
-    height: '400px', // Adjust height as needed
+    width: 'aut0',
+    
+    height: {xs: '150px', md: '250px' }, // Adjust height as needed
     border: '1px solid #FFD700',
     background: '#FFD700',
     boxShadow: '10px 0px 10px #000',
