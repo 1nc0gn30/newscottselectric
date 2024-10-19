@@ -1,199 +1,196 @@
 // src/components/HeroSection.js
-import React, { Suspense } from 'react';
-import { Container, Typography, Button, Box, Grid } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Button, Chip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Canvas } from '@react-three/fiber';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import SolarPowerIcon from '@mui/icons-material/SolarPower';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import BusinessIcon from '@mui/icons-material/Business';
 import ConstructionIcon from '@mui/icons-material/Construction';
-
-// Import the model components (code-splitting)
-const CoinModel = React.lazy(() => import('./CoinModel'));
-const CircuitBreakerModel = React.lazy(() => import('./CircuitBreakerModel'));
-const MultimeterModel = React.lazy(() => import('./MultimeterModel'));
-const KleinsModel = React.lazy(() => import('./KleinsModel'));
-const GlowEffect = React.lazy(() => import('./GlowEffect'));
+import UpdateIcon from '@mui/icons-material/Update';
+import { TypeAnimation } from 'react-type-animation';
 
 const HeroSection = () => {
   const theme = useTheme();
 
   return (
-    <>
+    <Box
+      sx={{
+        paddingTop: '120px',
+        position: 'relative',
+        minHeight: '90vh',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: -1,
+        }}
+      >
+        <source src="/assets/videos/DesktopHeroVideo.mp4" media="(min-width: 768px)" type="video/mp4" />
+        <source src="/assets/videos/MobileHeroVideo.mp4" media="(max-width: 767px)" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay Content */}
       <Box
         sx={{
-          position: 'relative',
-          minHeight: '90vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: theme.palette.primary.contrastText,
-          textAlign: 'center',
-          padding: '20px 20px',
-          overflow: 'hidden',
-          background: 'black',
-          zIndex: '',
-        }}
-        id="#home"
-      >
-        {/* Three.js Canvas */}
-        <Canvas
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100vh',
-            zIndex: 1,
-          }}
-          shadows
-        >
-          <ambientLight intensity={0.3} />
-          <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
-          <pointLight position={[-10, -10, -10]} intensity={1} />
-          
-          <Suspense fallback={null}>
-            <CoinModel />
-            <CircuitBreakerModel />
-            <MultimeterModel />
-            <KleinsModel />
-            <GlowEffect />
-          </Suspense>
-
-        
-        </Canvas>
-      </Box>
-
-      <Container
-        sx={{
           zIndex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          padding: theme.spacing(6),
-          borderRadius: theme.shape.borderRadius,
-          maxWidth: '800px',
-          marginTop: 2,
-          boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.3)',
-          backdropFilter: 'blur(5px)',
-          position: 'relative',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional overlay to enhance text contrast
+          padding: theme.spacing(4),
+          textAlign: 'center',
+          borderRadius: '16px',
         }}
       >
-        <Grid container spacing={2} alignItems="center" justifyContent="center">
-          <Grid item xs={12}>
-            <Typography
-              variant="h3"
-              component="h2"
-              sx={{
-                fontWeight: 'bold',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                textAlign: 'center',
-                color: theme.palette.primary.contrastText,
-                marginBottom: theme.spacing(2),
-              }}
-              id="about"
-            >
-              Hampton Roads' Most Trusted Electricians
-            </Typography>
-          </Grid>
+        {/* Title with Type Animation */}
+        <Typography
+          variant="h2"
+          sx={{
+            color: '#FFD700', // Gold color for a premium feel
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            marginBottom: theme.spacing(2),
+          }}
+        >
+          <TypeAnimation
+            sequence={[
+              'Welcome to', // Types the text
+              1000, // Waits 2s
+              'Scott\'s Electric', // Replaces text
+              2000, // Waits 2s
+              'Hampton Roads', // Replaces text again
+              1000,
+              'Virginia (757)', // Replaces text again
+              2000,
+              'Top Tier', // Replaces text again
+              2000,
+              'Electrical  Services', // Replaces text again
+              2000,
+            ]}
+            speed={50} // Types at 50ms per character
+            wrapper="span"
+            repeat={Infinity}
+          />
+        </Typography>
 
-          <Grid item xs={12}>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '1.25rem',
-                marginBottom: theme.spacing(4),
-                color: theme.palette.text.secondary,
-                lineHeight: 1.7,
-              }}
-            >
-              With over a decade of experience, Scott's Electric is your go-to provider for safe, reliable, and efficient electrical services. From residential and commercial installations to solar panel setup, EV charger installations, and emergency repairs, we handle it all. Our team of certified electricians is committed to delivering the highest level of service, ensuring your safety and satisfaction.
-            </Typography>
-          </Grid>
+        {/* Subtitle */}
+        <Typography
+          variant="body1"
+          sx={{
+            color: theme.palette.text.secondary,
+            maxWidth: '600px',
+            margin: '0 auto',
+            marginBottom: theme.spacing(4),
+            fontSize: '1.2rem',
+            lineHeight: 1.6,
+          }}
+        >
+          Your trusted provider for <strong>safe</strong>, <strong>reliable</strong>, and <strong>efficient</strong> electrical services in Hampton Roads. Let us power your home and business with expertise, dedication, and a commitment to excellence.
+        </Typography>
 
-          <Grid item xs={12} sm={4} display="flex" justifyContent="center">
-            <Box textAlign="center">
-              <ElectricBoltIcon sx={{ fontSize: 40, color: theme.palette.secondary.main }} />
-              <Typography variant="h6" color={theme.palette.primary.contrastText}>
-                Electrical Installations
-              </Typography>
-            </Box>
-          </Grid>
+        {/* Design Chips */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: theme.spacing(2),
+            marginBottom: theme.spacing(4),
+            flexWrap: 'wrap',
+          }}
+        >
+          <Chip
+            icon={<ElectricBoltIcon />}
+            label="Expert Electricians"
+            color="secondary"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1) }}
+          />
+          <Chip
+            icon={<VerifiedIcon />}
+            label="Trusted & Certified"
+            color="primary"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1) }}
+          />
+          <Chip
+            icon={<HomeRepairServiceIcon />}
+            label="Residential Services"
+            color="success"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1) }}
+          />
+          <Chip
+            icon={<BusinessIcon />}
+            label="Commercial Services"
+            color="white"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1), backgroundColor: 'white' }}
+          />
+          <Chip
+            icon={<ConstructionIcon />}
+            label="New Construction"
+            color="warning"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1) }}
+          />
+          <Chip
+            icon={<UpdateIcon />}
+            label="Old Construction"
+            color="error"
+            sx={{ fontWeight: 'bold', padding: theme.spacing(1) }}
+          />
+        </Box>
 
-          <Grid item xs={12} sm={4} display="flex" justifyContent="center">
-            <Box textAlign="center">
-              <SolarPowerIcon sx={{ fontSize: 40, color: theme.palette.secondary.main }} />
-              <Typography variant="h6" color={theme.palette.primary.contrastText}>
-                Solar Panel Setup
-              </Typography>
-            </Box>
-          </Grid>
+        {/* Buttons */}
+        <Box display="flex" gap={2} justifyContent="center">
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: theme.palette.secondary.main,
+              color: theme.palette.secondary.contrastText,
+              padding: '10px 30px',
+              borderRadius: '50px',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: theme.palette.secondary.dark,
+              },
+            }}
+          >
+            Request a Quote
+          </Button>
 
-          <Grid item xs={12} sm={4} display="flex" justifyContent="center">
-            <Box textAlign="center">
-              <ConstructionIcon sx={{ fontSize: 40, color: theme.palette.secondary.main }} />
-              <Typography variant="h6" color={theme.palette.primary.contrastText}>
-                Emergency Repairs
-              </Typography>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: '1.25rem',
-                marginBottom: theme.spacing(4),
-                color: theme.palette.text.secondary,
-                lineHeight: 1.7,
-              }}
-            >
-              Whether you're upgrading your home’s electrical system, installing energy-saving solutions, or in need of urgent repair services, we’ve got you covered. Our services are tailored to meet your specific needs and budget. Trust us for expert, fast, and professional services.
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} display="flex" justifyContent="center" flexDirection="column" alignItems="center">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: theme.palette.secondary.main,
-                color: theme.palette.secondary.contrastText,
-                padding: '12px 36px',
-                textTransform: 'none',
-                borderRadius: '50px',
-                transition: 'transform 0.2s ease-in-out',
-                '&:hover': {
-                  backgroundColor: theme.palette.secondary.dark,
-                  transform: 'scale(1.05)',
-                },
-                mb: 2,
-              }}
-            >
-              Request a Quote Today
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: theme.palette.primary.contrastText,
-                color: theme.palette.primary.contrastText,
-                padding: '12px 36px',
-                textTransform: 'none',
-                borderRadius: '50px',
-                transition: 'transform 0.2s ease-in-out',
-                '&:hover': {
-                  borderColor: theme.palette.secondary.main,
-                  color: theme.palette.secondary.main,
-                  transform: 'scale(1.05)',
-                },
-              }}
-            >
-              Request Service Today
-            </Button>
-          </Grid>
-        </Grid>
-      </Container>
-    </>
+          <Button
+            variant="outlined"
+            size="large"
+            sx={{
+              borderColor: theme.palette.primary.contrastText,
+              color: theme.palette.primary.contrastText,
+              padding: '10px 30px',
+              borderRadius: '50px',
+              textTransform: 'none',
+              '&:hover': {
+                borderColor: theme.palette.secondary.main,
+                color: theme.palette.secondary.main,
+              },
+            }}
+          >
+            Request Service
+          </Button>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

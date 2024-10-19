@@ -1,5 +1,20 @@
+// src/components/ContactForm.js
 import React, { useState } from 'react';
-import { Container, TextField, Typography, Button, MenuItem, Select, InputLabel, FormControl, Checkbox, ListItemText, Paper, Box } from '@mui/material';
+import {
+  Container,
+  TextField,
+  Typography,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Checkbox,
+  ListItemText,
+  Paper,
+  Box,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const services = [
   "Appliance Installation",
@@ -10,7 +25,6 @@ const services = [
   "Outlet Installation",
   "Residential Services",
   "Security System Repair",
-  "Solar Panel Installation",
   "Wiring Repair",
   "Commercial Services",
   "Electrical Panel Repair",
@@ -39,13 +53,12 @@ const services = [
 ];
 
 const ContactForm = () => {
+  const theme = useTheme();
   const [selectedServices, setSelectedServices] = useState([]);
 
   const handleServiceChange = (event) => {
     const { target: { value } } = event;
-    setSelectedServices(
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setSelectedServices(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
@@ -54,19 +67,18 @@ const ContactForm = () => {
         sx={{
           padding: '2rem',
           marginTop: '2rem',
-          backgroundColor: '#1e1e1e', // Dark background
+          backgroundColor: theme.palette.grey[900], // Dark background
           borderRadius: '8px',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
         }}
       >
         <Typography
-          id="contact"
-          variant="h4"
+          variant="h3"
           sx={{
             marginBottom: '2rem',
             textAlign: 'center',
             fontWeight: 'bold',
-            color: '#fff', // White text for heading
+            color: theme.palette.primary.contrastText, // White text for heading
           }}
         >
           Contact Us
@@ -74,87 +86,47 @@ const ContactForm = () => {
 
         <Box component="form" noValidate autoComplete="off">
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <TextField
-              fullWidth
-              label="Full Name"
-              variant="outlined"
-              sx={{
-                backgroundColor: '#333',
-                color: '#fff',
-                '& .MuiInputLabel-root': { color: '#aaa' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#555' },
-                  '&:hover fieldset': { borderColor: '#888' },
-                  '&.Mui-focused fieldset': { borderColor: '#B3AD1F' },
-                },
-              }}
-            />
+            {['Full Name', 'Email Address', 'Phone Number', 'Address'].map((label) => (
+              <TextField
+                key={label}
+                fullWidth
+                label={label}
+                type={label === 'Email Address' ? 'email' : 'text'}
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  backgroundColor: theme.palette.grey[800],
+                  '& .MuiInputLabel-root': { color: theme.palette.text.secondary },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': { borderColor: '#555' },
+                    '&:hover fieldset': { borderColor: '#888' },
+                    '&.Mui-focused': { color: '#fff' }, // Keep white on focus
+                  },
+                  input: { color: "white" },
+                }}
+              />
+            ))}
 
-            <TextField
-              fullWidth
-              label="Email Address"
-              type="email"
-              variant="outlined"
-              sx={{
-                backgroundColor: '#333',
-                color: '#fff',
-                '& .MuiInputLabel-root': { color: '#aaa' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#555' },
-                  '&:hover fieldset': { borderColor: '#888' },
-                  '&.Mui-focused fieldset': { borderColor: '#B3AD1F' },
-                },
-              }}
-            />
-
-            <TextField
-              fullWidth
-              label="Phone Number"
-              type="tel"
-              variant="outlined"
-              sx={{
-                backgroundColor: '#333',
-                color: '#fff',
-                '& .MuiInputLabel-root': { color: '#aaa' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#555' },
-                  '&:hover fieldset': { borderColor: '#888' },
-                  '&.Mui-focused fieldset': { borderColor: '#B3AD1F' },
-                },
-              }}
-            />
-
-            <TextField
-              fullWidth
-              label="Address"
-              variant="outlined"
-              sx={{
-                backgroundColor: '#333',
-                color: '#fff',
-                '& .MuiInputLabel-root': { color: '#aaa' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#555' },
-                  '&:hover fieldset': { borderColor: '#888' },
-                  '&.Mui-focused fieldset': { borderColor: '#B3AD1F' },
-                },
-              }}
-            />
-
-            <FormControl fullWidth sx={{ backgroundColor: '#333', '& .MuiInputLabel-root': { color: '#B3AD1F' } }}>
-              <InputLabel>Select services</InputLabel>
+            <FormControl fullWidth>
+              <InputLabel 
+                sx={{ 
+                  color: '#fff', 
+                  '&.Mui-focused': { color: '#fff' }, // Keep white on focus
+                }}
+              >
+                Select Services
+              </InputLabel>
               <Select
                 multiple
                 value={selectedServices}
                 onChange={handleServiceChange}
-                renderValue={(selected) =>
-                  selected.length ? selected.join(', ') : 'Select options'
-                }
+                renderValue={(selected) => selected.join(', ') || 'Select options'}
                 sx={{
-                  backgroundColor: '#333',
-                  color: '#fff',
+                  backgroundColor: theme.palette.grey[800],
+                  color: "white",
                   '& .MuiOutlinedInput-notchedOutline': { borderColor: '#555' },
                   '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#888' },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#B3AD1F' },
+                  
                 }}
               >
                 {services.map((service) => (
@@ -173,14 +145,13 @@ const ContactForm = () => {
               rows={4}
               variant="outlined"
               sx={{
-                backgroundColor: '#333',
-                color: '#fff',
-                '& .MuiInputLabel-root': { color: '#aaa' },
+                backgroundColor: theme.palette.grey[800],
+                '& .MuiInputLabel-root': { color: theme.palette.text.secondary },
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': { borderColor: '#555' },
-                  '&:hover fieldset': { borderColor: '#B3AD1F' },
-                  '&.Mui-focused fieldset': { borderColor: '#B3AD1F' },
+                  '&.Mui-focused': { color: '#fff' }, // Keep white on focus
                 },
+                textarea: { color: "white" },
               }}
             />
 
@@ -188,11 +159,9 @@ const ContactForm = () => {
               fullWidth
               variant="contained"
               sx={{
-                backgroundColor: '#000000',
-                color: '#fff',
-                '&:hover': {
-                  backgroundColor: '#B3AD1F',
-                },
+                backgroundColor: "black",
+                color: theme.palette.primary.contrastText,
+                '&:hover': { backgroundColor: '#B3AD1F' },
                 padding: '12px',
               }}
             >

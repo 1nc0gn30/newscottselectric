@@ -12,7 +12,7 @@ const theme = createTheme({
       contrastText: '#333', // Dark grey text on secondary buttons
     },
     background: {
-      default: '#000000', // Soft White background for pages
+      default: '#F8F9FA', // Soft White background for pages
       paper: '#fff', // White background for Paper components (cards, modals, etc.)
     },
     text: {
@@ -32,6 +32,7 @@ const theme = createTheme({
       fontWeight: 600,
       color: '#333333', // Dark grey for medium headers
       fontFamily: 'Lilita One',
+      fontSize: '1.9rem',
 
     },
     h3: {
@@ -87,11 +88,18 @@ const theme = createTheme({
           color: '#fff', // White text on primary buttons
         },
         outlinedPrimary: {
-          borderColor: '#0077B6', // Electric Blue border for outlined primary buttons
-          color: '#0077B6', // Electric Blue text for outlined primary buttons
+          borderColor: 'gold', // Electric Blue border for outlined primary buttons
+          color: 'gold', // Electric Blue text for outlined primary buttons
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'gold',
+        }
+      }
+    }
    
  
   },

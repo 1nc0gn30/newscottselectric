@@ -5,6 +5,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu'; // Hamburger icon
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -38,60 +40,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const navItemsLeft = [
-    { text: 'Home', id: '#home', icon: (
-      <Box
-        component="img"
-        src="/assets/images/HomeIcon.png" // Replace with the path to your PNG
-        alt="Home Icon"
-        sx={{
-          width: 35, // Adjust the size accordingly
-          height: 35,
-        }}
-      />
-    ), },
-    { text: 'Services', id: 'services', icon: (
-      <Box
-        component="img"
-        src="/assets/images/ServicesIcon.png" // Replace with the path to your PNG
-        alt="Home Icon"
-        sx={{
-          width: 35, // Adjust the size accordingly
-          height: 35,
-        }}
-      />
-    ), },
-  ];
-
-  const navItemsRight = [
-    { text: 'Contact', id: 'contact', icon: (
-      <Box
-        component="img"
-        src="/assets/images/ContactIcon.png" // Replace with the path to your PNG
-        alt="Home Icon"
-        sx={{
-          width: 35, // Adjust the size accordingly
-          height: 35,
-        }}
-      />
-    ), },
-    { text: 'About', id: 'about', icon: (
-      <Box
-        component="img"
-        src="/assets/images/AboutIcon.png" // Replace with the path to your PNG
-        alt="Home Icon"
-        sx={{
-          width: 35, // Adjust the size accordingly
-          height: 35,
-        }}
-      />
-    ), },
+  const navItems = [
+    { text: 'Home', id: '#home', icon: '/assets/images/HomeIcon.png' },
+    { text: 'Services', id: 'services', icon: '/assets/images/ServicesIcon.png' },
+    { text: 'Contact', id: 'contact', icon: '/assets/images/ContactIcon.png' },
+    { text: 'About', id: 'about', icon: '/assets/images/AboutIcon.png' },
   ];
 
   const drawerContent = (
     <Box
       sx={{
-        width: 300,
+        width: 250,
         backgroundColor: theme.palette.background.paper,
         height: '100%',
         paddingTop: theme.spacing(2),
@@ -100,8 +59,8 @@ const Navbar = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List sx={{ padding: 0 }}>
-        {[...navItemsLeft, ...navItemsRight].map((item) => (
+      <List>
+        {navItems.map((item) => (
           <ScrollLink
             key={item.text}
             to={item.id}
@@ -111,7 +70,13 @@ const Navbar = () => {
             offset={-70}
             style={{ textDecoration: 'none', cursor: 'pointer' }}
           >
-            <ListItem button sx={{ padding: theme.spacing(3) }}>
+            <ListItem button>
+              <Box
+                component="img"
+                src={item.icon}
+                alt={item.text}
+                sx={{ width: 35, height: 35, marginRight: theme.spacing(2) }}
+              />
               <ListItemText
                 primary={item.text}
                 primaryTypographyProps={{
@@ -130,143 +95,68 @@ const Navbar = () => {
 
   return (
     <>
-      <Slide direction="up" in={showNavbar} mountOnEnter unmountOnExit>
+      <Slide direction="down" in={showNavbar} mountOnEnter unmountOnExit>
         <AppBar
           position="fixed"
           sx={{
-            top: 'auto',
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            backgroundColor: 'transparent', // Make AppBar transparent
             boxShadow: 'none',
+            padding: theme.spacing(1, 2),
+            backdropFilter: 'blur(10px)', // Blur effect on background
             height: '120px',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.55)', // Dark background
+              zIndex: -1, // Ensure it stays behind content
+              backdropFilter: 'blur(10px)', // Apply blur to background only
+            },
           }}
         >
-          <Toolbar
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: theme.spacing(1, 3),
-              [theme.breakpoints.down('sm')]: {
-                padding: theme.spacing(1, 2),
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 4,
-                justifyContent: 'space-evenly',
-                width: '100%',
-                alignItems: 'center',
-              }}
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
+            {/* Logo on the left */}
+            <RouterLink to="/" style={{ textDecoration: 'none' }}>
+              <Box
+                component="img"
+                src="/assets/images/scottselectriclogo2.png"
+                alt="Scott's Electric Logo"
+                sx={{
+                  height: 100,
+                  width: 100,
+                  borderRadius: '100%',
+                  cursor: 'pointer',
+                }}
+              />
+            </RouterLink>
+
+            {/* Hamburger Icon on the right */}
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
             >
-              {navItemsLeft.map((item) => (
-                <ScrollLink
-                  key={item.text}
-                  to={item.id}
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  offset={-70}
-                  style={{ textDecoration: 'none', cursor: 'pointer' }}
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {item.icon}
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.contrastText,
-                        fontSize: '0.75rem',
-                        textTransform: 'uppercase',
-                        marginTop: theme.spacing(0.5),
-                        [theme.breakpoints.down('sm')]: {
-                          fontSize: '0.65rem',
-                        },
-                      }}
-                    >
-                      {item.text}
-                    </Typography>
-                  </Box>
-                </ScrollLink>
-              ))}
-
-              <RouterLink to="/" style={{ textDecoration: 'none' }}>
-                <Box
-                  component="img"
-                  src="/assets/images/scottselectriclogo2.png"
-                  alt="Scott's Electric Logo"
-                  sx={{
-                    height: 100,
-                    width: 100,
-                    borderRadius: '100%',
-                    cursor: 'pointer',
-                    [theme.breakpoints.down('sm')]: {
-                      height: 90,
-                      width: 90,
-                    },
-                  }}
-                />
-              </RouterLink>
-
-              {navItemsRight.map((item) => (
-                <ScrollLink
-                  key={item.text}
-                  to={item.id}
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  offset={-70}
-                  style={{ textDecoration: 'none', cursor: 'pointer' }}
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {item.icon}
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.contrastText,
-                        fontSize: '0.75rem',
-                        textTransform: 'uppercase',
-                        marginTop: theme.spacing(0.5),
-                        [theme.breakpoints.down('sm')]: {
-                          fontSize: '0.65rem',
-                        },
-                      }}
-                    >
-                      {item.text}
-                    </Typography>
-                  </Box>
-                </ScrollLink>
-              ))}
-            </Box>
+              <MenuIcon sx={{ fontSize: 30 }} />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Slide>
 
+      {/* Drawer (Sidebar) */}
       <Drawer
-        anchor="left"
+        anchor="right"
         open={drawerOpen}
         onClose={toggleDrawer(false)}
         sx={{
           '& .MuiDrawer-paper': {
             backgroundColor: theme.palette.background.default,
             boxShadow: '0px 0px 15px rgba(0,0,0,0.3)',
-            borderTopRightRadius: theme.shape.borderRadius * 2,
-            borderBottomRightRadius: theme.shape.borderRadius * 2,
             transition: 'width 0.5s ease-in-out',
-            width: 300,
+            width: 250,
           },
         }}
       >

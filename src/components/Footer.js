@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, IconButton, Link } from '@mui/material';
+import { Container, Typography, Box, IconButton, Link, Divider } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -16,7 +16,7 @@ const Footer = () => {
         boxShadow: '0px -3px 15px rgba(0, 0, 0, 0.5)',
       }}
     >
-      <Container sx={{ display: 'flex', flexDirection: 'column'}}>
+      <Container sx={{ display: 'flex', flexDirection: 'column' }}>
         {/* Main Flex Container for 3 Columns */}
         <Box
           sx={{
@@ -37,7 +37,7 @@ const Footer = () => {
               style={{ width: '150px', marginBottom: '1rem', borderRadius: '50%' }}
             />
             <Typography variant="h4" sx={{ fontSize: '2rem', fontWeight: 700, color: '#fff' }}>
-              Contact Us
+              Contact Us Today
             </Typography>
             <Typography variant="body2" sx={{ color: '#a8a8a8', fontSize: '1rem', fontWeight: 500, mb: 1 }}>
               info@scottselectric.com
@@ -57,87 +57,83 @@ const Footer = () => {
               gap: 3,
             }}
           >
-            <IconButton
-              component={Link}
-              href="mailto:info@scottselectric.com"
-              sx={{
-                color: '#e0e0e0',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '50%',
-                transition: 'transform 0.3s ease, background-color 0.3s ease',
-                '&:hover': {
-                  backgroundColor: '#B3AD1F',
-                  transform: 'scale(0.92)',
-                },
-                mb: 1.5,
-              }}
-              aria-label="Email"
-            >
-              <EmailIcon fontSize="large" />
-            </IconButton>
-            <Typography variant="body2" sx={{ color: '#999', fontSize: '0.85rem' }}>
-              Email Us
-            </Typography>
-
-            <IconButton
-              component={Link}
-              href="tel:1234567890"
-              sx={{
-                color: '#e0e0e0',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '50%',
-                transition: 'transform 0.3s ease, background-color 0.3s ease',
-                '&:hover': {
-                  backgroundColor: '#B3AD1F',
-                  transform: 'scale(0.92)',
-                },
-                mb: 1.5,
-              }}
-              aria-label="Phone"
-            >
-              <PhoneIcon fontSize="large" />
-            </IconButton>
-            <Typography variant="body2" sx={{ color: '#999', fontSize: '0.85rem' }}>
-              Call Us
-            </Typography>
-
-            <IconButton
-              component={Link}
-              href="https://google.com"
-              target="_blank"
-              rel="noopener"
-              sx={{
-                color: '#e0e0e0',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                padding: '1.5rem',
-                borderRadius: '50%',
-                transition: 'transform 0.3s ease, background-color 0.3s ease',
-                '&:hover': {
-                  backgroundColor: '#B3AD1F',
-                  transform: 'scale(0.92)',
-                },
-                mb: 1.5,
-              }}
-              aria-label="Google"
-            >
-              <GoogleIcon fontSize="large" />
-            </IconButton>
-            <Typography variant="body2" sx={{ color: '#999', fontSize: '0.85rem' }}>
-              Find Us on Google
-            </Typography>
-
-            {/* Divider under icons */}
             <Box
               sx={{
-                height: '1px',
-                backgroundColor: '#444',
-                margin: '2rem 0',
-                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '2rem',
               }}
-            />
+            >
+              <IconButton
+                component={Link}
+                href="mailto:info@scottselectric.com"
+                sx={{
+                  color: '#e0e0e0',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: '1rem',
+                  borderRadius: '50%',
+                  transition: 'transform 0.3s ease, background-color 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: 'rgb(255, 215, 0, 0.8)',
+                    transform: 'scale(0.92)',
+                  },
+                }}
+                aria-label="Email"
+              >
+                <EmailIcon fontSize="large" />
+              </IconButton>
+
+              <IconButton
+                component={Link}
+                href="tel:1234567890"
+                sx={{
+                  color: '#e0e0e0',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: '1rem',
+                  borderRadius: '50%',
+                  transition: 'transform 0.3s ease, background-color 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: 'rgb(255, 215, 0, 0.8)',
+                    transform: 'scale(0.92)',
+                  },
+                }}
+                aria-label="Phone"
+              >
+                <PhoneIcon fontSize="large" />
+              </IconButton>
+
+              <IconButton
+                component={Link}
+                href="https://google.com"
+                target="_blank"
+                rel="noopener"
+                sx={{
+                  color: '#e0e0e0',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: '1rem',
+                  borderRadius: '50%',
+                  transition: 'transform 0.3s ease, background-color 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: 'rgb(255, 215, 0, 0.8)',
+                    transform: 'scale(0.92)',
+                  },
+                }}
+                aria-label="Google"
+              >
+                <GoogleIcon fontSize="large" />
+              </IconButton>
+            </Box>
           </Box>
+
+          {/* Divider */}
+          <Divider
+            sx={{
+              width: '100%',
+              backgroundColor: '#555',
+              margin: '2rem 0',
+              borderBottomWidth: '2px',
+            }}
+          />
 
           {/* Column 3: All Rights Reserved */}
           <Box sx={{ flex: 1 }}>

@@ -1,6 +1,8 @@
-import React from 'react';
-import { Container, Typography, Paper, Box, Grid2 } from '@mui/material';
+import React, { useRef } from 'react';
+import { Container, Typography, Paper, Box } from '@mui/material';
+import Grid from '@mui/material/Grid2'; // Correct Grid import
 import { useTheme } from '@mui/material/styles';
+import { motion, useInView } from 'framer-motion'; // Framer Motion for animations and intersection observer
 
 const services = [
   {
@@ -38,12 +40,6 @@ const services = [
     description: "Add new outlets or upgrade existing ones to accommodate modern devices safely.",
     caseScenario: "Upgraded all outlets to include USB ports in a tech-heavy household.",
     image: "/assets/images/OutletInstallation.jpeg"
-  },
-  {
-    title: "Solar Panel Installation",
-    description: "Harness the power of the sun with our professional solar panel installation services.",
-    caseScenario: "Installed a solar panel system for a homeowner, reducing their electricity bill by 40% within the first month.",
-    image: "/assets/images/SolarPanelInstallation.jpeg"
   },
   {
     title: "Smart Home Automation",
@@ -119,14 +115,38 @@ const services = [
   },
 ];
 
+// Animation Variants
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } },
+};
+
 const ServiceList = () => {
   const theme = useTheme();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { triggerOnce: false, margin: '-100px' });
 
   return (
-    <Container sx={{ 
-      paddingY: theme.spacing(8), 
-      backgroundColor: theme.palette.background.default // Set container background 
-    }}>
+    <Container
+      ref={sectionRef}
+      component={motion.div}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
+      }}
+      sx={{
+        paddingY: theme.spacing(8),
+        backgroundColor: theme.palette.background.default, // Set container background
+      }}
+    >
       <Typography
         id="services"
         variant="h3"
@@ -135,83 +155,99 @@ const ServiceList = () => {
         sx={{
           marginBottom: theme.spacing(4),
           fontWeight: 'bold',
-          color: '#B3AD1F', // Gold color for the heading
-          fontSize: '4rem'
+          color: '#1c1c1e', // Gold color for the heading
+          fontSize: '4rem',
+          border: '1px solid #FFD700',
+          background: '#FFD700',
+          boxShadow: '10px 0px 10px #000',
+          borderTopLeftRadius: 10,
+          borderBottomRightRadius: 10,
         }}
       >
-        Our Services
+        Some Of Our Services
       </Typography>
-      <Grid2
-        container
-        spacing={4}
-        sx={{ justifyContent: 'center' }}
-      >
+
+      <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
         {services.map((service, index) => (
-          <Grid2
+          <Grid
             item
-            xs={12} // One service per row on all screen sizes
+            size={{ xs: 12 }}
             key={index}
             sx={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Paper
-              elevation={10}
-              sx={{
-                width: { md: '550px', xs: '90vw' },
-                padding: theme.spacing(3),
-                textAlign: 'center',
-                backgroundColor: '#222', // Dark background for the card
-                borderRadius: theme.shape.borderRadius,
-                color: '#eee', // Off-white text color
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                '&:hover': {
-                  transform: 'scale(0.95)',
-                },
-              }}
+            <motion.div
+              variants={cardVariants}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              whileHover="hover"
             >
-              <Box
-                component="img"
-                alt={service.title}
-                src={service.image}
+              <Paper
+                elevation={10}
                 sx={{
-                  width: '100%',
-                  height: 'auto',
-                  backgroundColor: theme.palette.grey[800], // Darker grey for image background
-                  borderRadius: theme.shape.borderRadius,
-                  marginBottom: theme.spacing(2),
-                }}
-              />
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 'bold',
-                  color: '#B3AD1F', // Gold color for the title
-                  marginBottom: theme.spacing(1),
+                  width: { md: '550px', xs: '90vw' },
+                  padding: theme.spacing(4),
+                  textAlign: 'center',
+                  background: 'linear-gradient(145deg, #1e1e1e, #2a2a2a)', // Gradient background
+                  borderRadius: theme.shape.borderRadius * 2,
+                  color: '#eee',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6)',
+                  '&:hover': {
+                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.8)',
+                  },
                 }}
               >
-                {service.title}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: '1rem',
-                  marginBottom: theme.spacing(2),
-                  fontWeight: 600,
-                }}
-              >
-                {service.description}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: '0.9rem',
-                  fontStyle: 'italic',
-                  color: '#ccc', // Lighter text color for case scenario
-                }}
-              >
-                {service.caseScenario}
-              </Typography>
-            </Paper>
-          </Grid2>
+                <Box
+                  component="img"
+                  alt={service.title}
+                  src={service.image}
+                  sx={{
+                    width: '100%',
+                    height: 'auto',
+                    backgroundColor: theme.palette.grey[800], // Darker grey background
+                    borderRadius: theme.shape.borderRadius,
+                    marginBottom: theme.spacing(2),
+                  }}
+                />
+                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 'bold',
+                      color: '#FFD700', // Gold color for the title
+                      marginBottom: theme.spacing(1),
+                    }}
+                  >
+                    {service.title}
+                  </Typography>
+                </motion.div>
+                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
+                  <Typography
+                    sx={{
+                      fontSize: '1rem',
+                      marginBottom: theme.spacing(2),
+                      fontWeight: 600,
+                    }}
+                  >
+                    {service.description}
+                  </Typography>
+                </motion.div>
+                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
+                  <Typography
+                    sx={{
+                      fontSize: '0.9rem',
+                      fontStyle: 'italic',
+                      color: '#ccc',
+                    }}
+                  >
+                    {service.caseScenario}
+                  </Typography>
+                </motion.div>
+              </Paper>
+            </motion.div>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     </Container>
   );
 };
