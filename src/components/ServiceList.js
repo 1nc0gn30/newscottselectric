@@ -147,24 +147,25 @@ const ServiceList = () => {
         backgroundColor: theme.palette.background.default, // Set container background
       }}
     >
-      <Typography
-        id="services"
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{
-          marginBottom: theme.spacing(4),
-          color: '#1c1c1e', // Gold color for the heading
-          fontSize: '4rem',
-          border: '1px solid #FFD700',
-          background: '#FFD700',
-          boxShadow: '10px 0px 10px #000',
-          borderTopLeftRadius: 10,
-          borderBottomRightRadius: 10,
-        }}
-      >
-        Some Of Our Services
-      </Typography>
+      <Box
+  id="services"
+  component="img"
+  src="/assets/images/TitleImage.png" // Replace with your actual image path
+  alt="Our Services"
+  sx={{
+    
+    width: 'auto',
+    height: '400px', // Adjust height as needed
+    border: '1px solid #FFD700',
+    background: '#FFD700',
+    boxShadow: '10px 0px 10px #000',
+    borderTopLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    display: 'block',
+    margin: '0 auto',
+    marginBottom: theme.spacing(4),
+  }}
+/>
 
       <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
         {services.map((service, index) => (
