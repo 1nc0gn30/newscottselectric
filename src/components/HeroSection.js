@@ -51,10 +51,8 @@ const HeroSection = () => {
       <Box
         sx={{
           zIndex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional overlay to enhance text contrast
           padding: theme.spacing(4),
           textAlign: 'center',
-          borderRadius: '16px',
         }}
       >
         {/* Title with Type Animation */}
@@ -78,10 +76,7 @@ const HeroSection = () => {
               1000,
               'Virginia (757)', // Replaces text again
               2000,
-              'Top Tier', // Replaces text again
-              2000,
-              'Electrical  Services', // Replaces text again
-              2000,
+             
             ]}
             speed={50} // Types at 50ms per character
             wrapper="span"

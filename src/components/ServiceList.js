@@ -154,7 +154,6 @@ const ServiceList = () => {
         gutterBottom
         sx={{
           marginBottom: theme.spacing(4),
-          fontWeight: 'bold',
           color: '#1c1c1e', // Gold color for the heading
           fontSize: '4rem',
           border: '1px solid #FFD700',
