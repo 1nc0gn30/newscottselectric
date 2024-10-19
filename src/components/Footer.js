@@ -37,7 +37,7 @@ const Footer = () => {
               style={{ width: '150px', marginBottom: '1rem', borderRadius: '50%' }}
             />
             <Typography variant="h4" sx={{ fontSize: '2rem', fontWeight: 700, color: '#fff' }}>
-              Contact Us Today
+              Connect With Us Today
             </Typography>
             <Typography variant="body2" sx={{ color: '#a8a8a8', fontSize: '1rem', fontWeight: 500, mb: 1 }}>
               info@scottselectric.com

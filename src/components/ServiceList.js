@@ -122,15 +122,10 @@ const cardVariants = {
   hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
-const textVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } },
-};
-
 const ServiceList = () => {
   const theme = useTheme();
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { triggerOnce: false, margin: '-100px' });
+  const isInView = useInView(sectionRef, { triggerOnce: true, margin: '-100px' });
 
   return (
     <Container
@@ -144,35 +139,32 @@ const ServiceList = () => {
       }}
       sx={{
         paddingY: theme.spacing(8),
-        backgroundColor: theme.palette.background.default, // Set container background
+        backgroundColor: theme.palette.background.default, 
       }}
     >
       <Box
-  id="services"
-  component="img"
-  src="/assets/images/TitleImage.png" // Replace with your actual image path
-  alt="Our Services"
-  sx={{
-    
-    width: 'aut0',
-    
-    height: {xs: '150px', md: '250px' }, // Adjust height as needed
-    border: '1px solid #FFD700',
-    background: '#FFD700',
-    boxShadow: '10px 0px 10px #000',
-    borderTopLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    display: 'block',
-    margin: '0 auto',
-    marginBottom: theme.spacing(4),
-  }}
-/>
+        id="services"
+        component="img"
+        src="/assets/images/TitleImage.png"
+        alt="Our Services"
+        sx={{
+          width: 'auto',
+          height: { xs: '150px', md: '250px' },
+          border: '1px solid #FFD700',
+          boxShadow: '10px 0px 10px #000',
+          borderTopLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          display: 'block',
+          margin: '0 auto',
+          marginBottom: theme.spacing(4),
+        }}
+      />
 
       <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
         {services.map((service, index) => (
           <Grid
-            item
-            size={{ xs: 12 }}
+            item="true"
+            size={{xs: 12}}
             key={index}
             sx={{ display: 'flex', justifyContent: 'center' }}
           >
@@ -188,7 +180,7 @@ const ServiceList = () => {
                   width: { md: '550px', xs: '90vw' },
                   padding: theme.spacing(4),
                   textAlign: 'center',
-                  background: 'linear-gradient(145deg, #1e1e1e, #2a2a2a)', // Gradient background
+                  background: 'linear-gradient(145deg, #1e1e1e, #2a2a2a)', 
                   borderRadius: theme.shape.borderRadius * 2,
                   color: '#eee',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -205,45 +197,39 @@ const ServiceList = () => {
                   sx={{
                     width: '100%',
                     height: 'auto',
-                    backgroundColor: theme.palette.grey[800], // Darker grey background
+                    backgroundColor: theme.palette.grey[800],
                     borderRadius: theme.shape.borderRadius,
                     marginBottom: theme.spacing(2),
                   }}
                 />
-                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 'bold',
-                      color: '#FFD700', // Gold color for the title
-                      marginBottom: theme.spacing(1),
-                    }}
-                  >
-                    {service.title}
-                  </Typography>
-                </motion.div>
-                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
-                  <Typography
-                    sx={{
-                      fontSize: '1rem',
-                      marginBottom: theme.spacing(2),
-                      fontWeight: 600,
-                    }}
-                  >
-                    {service.description}
-                  </Typography>
-                </motion.div>
-                <motion.div variants={textVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
-                  <Typography
-                    sx={{
-                      fontSize: '0.9rem',
-                      fontStyle: 'italic',
-                      color: '#ccc',
-                    }}
-                  >
-                    {service.caseScenario}
-                  </Typography>
-                </motion.div>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 'bold',
+                    color: '#FFD700',
+                    marginBottom: theme.spacing(1),
+                  }}
+                >
+                  {service.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '1rem',
+                    marginBottom: theme.spacing(2),
+                    fontWeight: 600,
+                  }}
+                >
+                  {service.description}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '0.9rem',
+                    fontStyle: 'italic',
+                    color: '#ccc',
+                  }}
+                >
+                  {service.caseScenario}
+                </Typography>
               </Paper>
             </motion.div>
           </Grid>
