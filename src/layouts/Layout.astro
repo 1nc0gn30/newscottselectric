@@ -28,21 +28,6 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-
-  <!-- Inline Theme Script to Prevent Theme Flash -->
-  <script is:inline>
-    const theme = (() => {
-      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-        return localStorage.getItem('theme');
-      }
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
-      return 'dark';
-    })();
-    document.documentElement.className = theme;
-  </script>
-
   <meta name="keywords" content={`electrician ${cityName}, 757 electrician, electrical repair ${cityName}, EV charger installation ${cityName}, generator installation Virginia Beach, electrical panel upgrade Norfolk, Scott's Electric`} />
   
   <!-- Canonical & Indexing -->

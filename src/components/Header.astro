@@ -79,23 +79,8 @@ const services = [
         <a href="/contact" class="hover:text-brand-amber transition-colors">Contact</a>
       </nav>
 
-      <!-- Right Call CTA Button & Theme Toggle -->
-      <div class="hidden sm:flex items-center gap-3">
-        <!-- Sun/Moon Theme Toggle Button -->
-        <button 
-          id="theme-toggle-btn"
-          type="button" 
-          aria-label="Toggle Light and Dark Mode"
-          class="p-2.5 rounded-full border border-brand-gold/30 bg-brand-card hover:bg-brand-cardHover text-brand-gold transition-all focus:outline-none shadow-gold-glow"
-        >
-          <svg id="theme-sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-          </svg>
-          <svg id="theme-moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-          </svg>
-        </button>
-
+      <!-- Right Call CTA Button -->
+      <div class="hidden sm:flex items-center gap-4">
         <a 
           href="tel:7575360478" 
           class="flex items-center gap-2 border border-brand-gold/40 hover:border-brand-gold bg-brand-card/80 hover:bg-brand-cardHover text-brand-amber px-4 py-2 rounded-full text-xs font-bold transition-all shadow-gold-glow"
@@ -108,15 +93,7 @@ const services = [
       </div>
 
       <!-- Mobile Hamburger Menu Button -->
-      <div class="lg:hidden flex items-center gap-2">
-        <button 
-          id="theme-toggle-btn-mobile"
-          type="button" 
-          aria-label="Toggle Light and Dark Mode"
-          class="p-2 rounded-full border border-brand-gold/30 bg-brand-card text-brand-gold"
-        >
-          🌙
-        </button>
+      <div class="lg:hidden">
         <button 
           id="mobile-menu-btn" 
           class="p-2 text-gray-300 hover:text-brand-gold focus:outline-none" 
@@ -169,40 +146,4 @@ const services = [
       menu.classList.toggle('hidden');
     });
   }
-
-  // Light / Dark Mode Toggle Logic
-  const toggleBtn = document.getElementById('theme-toggle-btn');
-  const toggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
-  const sunIcon = document.getElementById('theme-sun-icon');
-  const moonIcon = document.getElementById('theme-moon-icon');
-
-  const updateIcons = (theme) => {
-    if (theme === 'light') {
-      sunIcon?.classList.add('hidden');
-      moonIcon?.classList.remove('hidden');
-    } else {
-      moonIcon?.classList.add('hidden');
-      sunIcon?.classList.remove('hidden');
-    }
-  };
-
-  const getInitialTheme = () => {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  };
-
-  let currentTheme = getInitialTheme();
-  document.documentElement.className = currentTheme;
-  updateIcons(currentTheme);
-
-  const toggleTheme = () => {
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.className = currentTheme;
-    localStorage.setItem('theme', currentTheme);
-    updateIcons(currentTheme);
-  };
-
-  toggleBtn?.addEventListener('click', toggleTheme);
-  toggleBtnMobile?.addEventListener('click', toggleTheme);
 </script>
