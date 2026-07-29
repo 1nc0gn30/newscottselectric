@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SchemaMarkup from '../components/SchemaMarkup.astro';
+import LeadPopup from '../components/LeadPopup.jsx';
 import '../styles/global.css';
 
 interface Props {
@@ -76,6 +77,17 @@ const {
     <input type="text" name="services" />
     <input type="text" name="estimatedBudget" />
   </form>
+
+  <form name="popup" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="city" />
+    <input type="text" name="service" />
+  </form>
+
+  <!-- Immediate On-Load Lead Popup Modal -->
+  <LeadPopup client:load />
 
   <!-- Accessibility Skip Link -->
   <a href="#main-content" class="skip-to-content">
