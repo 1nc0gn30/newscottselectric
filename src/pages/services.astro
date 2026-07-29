@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+
+const allServices = [
+  { title: "Appliance Installation & Dedicated Circuits", icon: "🍳", desc: "Dedicated high-voltage 240V circuits for ovens, dryers, refrigerators, and water heaters." },
+  { title: "Electrical Panel Upgrades (200A/400A)", icon: "⚡", desc: "Upgrade obsolete fuse boxes or 100A panels to modern high-capacity smart breaker boxes." },
+  { title: "EV Charging Station Installation", icon: "🚘", desc: "Level 2 chargers for Tesla, Rivian, Ford Lightning, and all EV makes in residential & commercial sites." },
+  { title: "Whole-Home Backup Generator Setup", icon: "🔋", desc: "Automatic gas/propane standby power systems for coastal storm outage protection." },
+  { title: "Custom & Recessed Architectural Lighting", icon: "💡", desc: "LED recessed spotlights, cove ambient lighting, under-cabinet strips, and dimming switches." },
+  { title: "Smart Home Automation Systems", icon: "📱", desc: "Integrated smart switches, automated climate, voice control, and smartphone remote access." },
+  { title: "Pool, Hot Tub & Spa Wiring", icon: "🏊", desc: "GFCI protected subpanels, bonding grids, underwater LED lighting, and automatic heaters." },
+  { title: "Whole-Home Surge Protection", icon: "⚡", desc: "Suppress lightning spikes and utility line surges before they damage expensive electronics." },
+  { title: "Electrical Safety Inspections & Audits", icon: "🔍", desc: "Comprehensive home buyer and code compliance safety inspections with digital reports." },
+  { title: "Commercial Electrical & 3-Phase Power", icon: "🏢", desc: "Retail, office, restaurant, and industrial electrical wiring, lighting maintenance, and power." },
+  { title: "Data Cabling & Network Infrastructure", icon: "🌐", desc: "Cat6/Cat6A structured cabling, server rack wiring, and Wi-Fi access point power." },
+  { title: "Emergency Electrical Repairs 24/7", icon: "🚨", desc: "Immediate dispatch for burning smells, tripping main breakers, or total power failure." }
+];
+---
+
+<Layout 
+  title="Electrical Services | Scott's Electric (Hampton Roads 757)"
+  description="Full-service licensed Master Electrician solutions across all 7 cities of 757. Panel upgrades, EV chargers, generators, custom lighting, smart home, and commercial electrical."
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+        Comprehensive Electrical Solutions
+      </span>
+      <h1 class="font-heading text-4xl sm:text-6xl font-extrabold text-white mt-4">
+        Our <span class="gold-gradient-text">Electrical Services</span>
+      </h1>
+      <p class="mt-4 text-base text-gray-300 max-w-3xl mx-auto">
+        Serving Virginia Beach, Norfolk, Chesapeake, Newport News, Hampton, Portsmouth, and Suffolk with licensed Master Electrician quality.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allServices.map(srv => (
+          <div class="glass-panel p-8 rounded-3xl border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 shadow-card flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-4">{srv.icon}</div>
+              <h3 class="font-heading text-xl font-bold text-white mb-3">{srv.title}</h3>
+              <p class="text-xs text-gray-300 leading-relaxed mb-6">{srv.desc}</p>
+            </div>
+            <a href="tel:7575360478" class="text-xs font-bold text-brand-gold hover:underline flex items-center justify-between border-t border-gray-800/80 pt-4">
+              <span>Book Service Now</span>
+              <span>(757) 536-0478 →</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-card/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+</Layout>

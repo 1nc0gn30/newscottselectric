@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../../components/InteractiveQuoteCalculator.jsx';
+---
+
+<Layout 
+  title="Commercial Electrical Contractor 757 | 3-Phase Power & Wiring"
+  description="Licensed Commercial Master Electricians in Virginia Beach, Norfolk, Chesapeake & 757 area. 3-phase power, commercial lighting, safety audits & data cabling."
+  serviceName="Commercial Electrical"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+          🏢 Commercial & Industrial Power
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+          Commercial Electrical <br />
+          <span class="gold-gradient-text">Contracting Services</span>
+        </h1>
+        <p class="mt-4 text-base text-gray-300 leading-relaxed">
+          From retail buildouts to office lighting retrofits, 3-phase electrical panel upgrades, access control systems, and commercial emergency dispatch in Hampton Roads.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+
+const faqCategories = [
+  {
+    category: "🚨 24/7 Emergency Electrical Services",
+    items: [
+      {
+        q: "What qualifies as an electrical emergency in Hampton Roads?",
+        a: "An electrical emergency includes burning plastic or metallic odors from outlets/switches, visible electrical sparks or arcing, buzzing/humming circuit breakers, hot outlet covers, smoke, or localized power outages. If you notice any of these signs, turn off your main breaker if safe and call Scott's Electric immediately at (757) 536-0478."
+      },
+      {
+        q: "How fast can Scott's Electric arrive during a 24/7 emergency?",
+        a: "We maintain on-call Master Electricians dispatched across all 7 cities of 757: Virginia Beach, Norfolk, Chesapeake, Newport News, Hampton, Portsmouth, and Suffolk. Average emergency arrival times range from 30 to 45 minutes."
+      },
+      {
+        q: "What should I do if a circuit breaker repeatedly trips?",
+        a: "A breaker that repeatedly trips is warning you of an electrical overload, short circuit, or ground fault. Do not force the breaker to stay on. Unplug devices connected to that circuit and call our licensed electricians to perform a safe diagnostic inspection."
+      }
+    ]
+  },
+  {
+    category: "⚡ Electrical Panel Upgrades (200A / 400A)",
+    items: [
+      {
+        q: "Why do I need to upgrade my electrical panel to 200 Amps in 757?",
+        a: "Older homes built prior to 2000 often have 100-amp panels. Today's modern appliances—including Level 2 EV chargers, central heat pumps, hot tubs, induction cooktops, and home automation systems—exceed 100A capacity. Upgrading to a 200A or 400A smart breaker panel prevents overloading and fire risks."
+      },
+      {
+        q: "How long does a main panel replacement take?",
+        a: "A standard 200A or 400A main electrical panel replacement takes 4 to 8 hours. Scott's Electric coordinates directly with Dominion Energy and local city inspectors to ensure seamless disconnect, replacement, and power restoration on the same day."
+      },
+      {
+        q: "Do you replace dangerous Federal Pacific (FPE) or Zinsco electrical panels?",
+        a: "Yes. Federal Pacific Stab-Lok and Zinsco panels have known safety defects where breakers fail to trip during an overload, creating severe fire hazards. We perform complete code-compliant panel replacements with modern Siemens, Eaton, or Square D breaker boxes."
+      }
+    ]
+  },
+  {
+    category: "🚘 EV Charging Station Installation (Level 2)",
+    items: [
+      {
+        q: "What is the difference between Level 1 and Level 2 EV charging?",
+        a: "Level 1 charging uses a standard 120V household outlet and adds only 3-5 miles of range per hour (taking up to 24+ hours for a full charge). Level 2 charging operates on a dedicated 240V circuit (40A-60A) and adds 30-50 miles of range per hour, fully charging your vehicle overnight in 4-8 hours."
+      },
+      {
+        q: "Which electric vehicles do you install home chargers for in 757?",
+        a: "We install home chargers for all EV makes and models, including Tesla (Model 3, Y, S, X, Cybertruck with Tesla Wall Connector), Rivian, Ford F-150 Lightning & Mustang Mach-E, Chevy Silverado EV, Hyundai Ioniq, Kia EV6, BMW, Mercedes, and Audi."
+      },
+      {
+        q: "Can I install an outdoor EV charger at my driveway or beach house?",
+        a: "Yes. We install weatherproof, NEMA 4X rated outdoor EV charging posts and wall stations engineered to withstand coastal rain, salt air, and storm conditions in Virginia Beach, Norfolk, and Hampton Roads."
+      }
+    ]
+  },
+  {
+    category: "🔋 Whole-Home Standby Generators & Coastal Storm Prep",
+    items: [
+      {
+        q: "How does an automatic standby generator protect my home during hurricanes?",
+        a: "An automatic standby generator (such as Generac or Kohler) is connected directly to your home's electrical panel and natural gas or propane supply. Within 10 seconds of a utility outage caused by a storm or hurricane, the automatic transfer switch (ATS) detects the power loss, starts the generator, and powers your entire home seamlessly."
+      },
+      {
+        q: "What size standby generator do I need for my house in Hampton Roads?",
+        a: "Generator sizing depends on your square footage and essential appliances. A 14kW to 18kW generator powers essential circuits (HVAC, refrigeration, lights, water heater), while a 22kW to 26kW generator powers large multi-zone homes and luxury estates."
+      }
+    ]
+  },
+  {
+    category: "📍 757 Permitting, Licensing & City Code Compliance",
+    items: [
+      {
+        q: "Does Scott's Electric handle city permits for electrical work in Virginia Beach, Norfolk & Chesapeake?",
+        a: "Yes. All major electrical work—including panel upgrades, EV charger installs, generator setups, subpanels, and new wiring—requires municipal permits under Virginia USBC building code. We handle all permit applications, municipal filings, and inspection scheduling for all 7 cities of 757."
+      },
+      {
+        q: "Are your electricians Master Electricians in Virginia?",
+        a: "Yes. All work performed by Scott's Electric is led by Virginia Master Electricians (VA Class A License). We carry full commercial general liability and workers' compensation insurance."
+      }
+    ]
+  },
+  {
+    category: "💲 Pricing, Estimates & Guarantees",
+    items: [
+      {
+        q: "How much does an electrical panel upgrade or EV charger install cost?",
+        a: "We provide transparent, upfront pricing with no hidden fees. Level 2 EV charger installs typically start around $650+, while 200A panel upgrades start around $1,800+. We offer free on-site consultations and instant price calculations via our online estimator."
+      },
+      {
+        q: "What warranties do you provide on electrical work?",
+        a: "We provide a 100% Satisfaction Guarantee along with a 3-Year Craftsmanship & Labor Warranty on all installations, plus manufacturer warranties on panels, chargers, and generators."
+      }
+    ]
+  }
+];
+
+// Flatten Q&As for Schema.org FAQPage microdata
+const allFaqItems = faqCategories.flatMap(cat => cat.items);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allFaqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<Layout 
+  title="Electrical FAQs & AI Knowledge Base | Scott's Electric 757"
+  description="Comprehensive 757 electrical answers for Virginia Beach, Norfolk, Chesapeake & Hampton Roads. Learn about 200A panel upgrades, EV chargers, generators, emergency repairs & permits."
+>
+  <!-- Header Banner -->
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+        AEO & AI Search Knowledge Base
+      </span>
+      <h1 class="font-heading text-4xl sm:text-6xl font-extrabold text-white mt-4 leading-tight">
+        Frequently Asked <span class="gold-gradient-text">Electrical Questions</span>
+      </h1>
+      <p class="mt-4 text-base text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Expert answers compiled by Virginia Master Electricians for homeowners and business owners across all 7 cities of 757.
+      </p>
+      
+      <div class="mt-8 flex items-center justify-center gap-4 text-xs font-bold text-brand-cyan">
+        <span>⚡ 20+ Verified Answers</span>
+        <span>•</span>
+        <span>📍 Servicing Virginia Beach, Norfolk, Chesapeake & 757</span>
+        <span>•</span>
+        <span>📞 24/7 Hotline: (757) 536-0478</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Categorized Section -->
+  <section class="py-20 bg-brand-dark">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      {faqCategories.map((cat, catIdx) => (
+        <div key={catIdx} class="space-y-6">
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brand-amber border-b border-gray-800 pb-3 flex items-center gap-3">
+            {cat.category}
+          </h2>
+
+          <div class="space-y-4">
+            {cat.items.map((item, itemIdx) => (
+              <details class="group glass-panel rounded-2xl p-6 border border-gray-800 hover:border-brand-gold/50 transition-colors [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+                  <h3 class="font-heading text-base md:text-xl font-bold text-white group-open:text-brand-amber transition-colors flex items-start gap-3">
+                    <span class="text-brand-gold font-extrabold">Q.</span>
+                    <span>{item.q}</span>
+                  </h3>
+                  <span class="ml-4 shrink-0 transition duration-300 group-open:-rotate-180">
+                    <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-gray-800/80 text-sm md:text-base leading-relaxed text-gray-300 space-y-2">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- Quote Estimator -->
+  <section class="py-16 bg-brand-card/30 border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <!-- Inject FAQPage Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</Layout>

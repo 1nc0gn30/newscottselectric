@@ -1,0 +1,129 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  cityName?: string;
+  serviceName?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "Electrician in Virginia Beach, Norfolk, Chesapeake & 757 | 24/7 Electrical Repair",
+  description = "Top-rated Master Electrician serving all 7 cities of Hampton Roads (757). 24/7 Emergency Electrical Repair, 200A Panel Upgrades, EV Chargers & Standby Generators. Call (757) 536-0478.",
+  cityName = "Hampton Roads",
+  serviceName = "Electrical Services",
+  canonicalUrl = Astro.url.href
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Inline Theme Script to Prevent Theme Flash -->
+  <script is:inline>
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+      return 'dark';
+    })();
+    document.documentElement.className = theme;
+  </script>
+
+  <meta name="keywords" content={`electrician ${cityName}, 757 electrician, electrical repair ${cityName}, EV charger installation ${cityName}, generator installation Virginia Beach, electrical panel upgrade Norfolk, Scott's Electric`} />
+  
+  <!-- Canonical & Indexing -->
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://scottselectric.pro/assets/images/scotts_electric_logo.png" />
+  <meta property="og:site_name" content="Scott's Electric" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://scottselectric.pro/assets/images/scotts_electric_logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/scotts_electric_logo_transparent.png" />
+  <link rel="apple-touch-icon" href="/assets/images/scotts_electric_logo_transparent.png" />
+
+  <!-- Schema.org Microdata -->
+  <SchemaMarkup cityName={cityName} serviceName={serviceName} />
+</head>
+<body class="bg-brand-dark text-brand-text min-h-screen flex flex-col antialiased selection:bg-brand-gold selection:text-black relative">
+  <!-- Brand Watermark Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-10 overflow-hidden">
+    <img 
+      src="/assets/images/scotts_electric_watermark.png" 
+      alt="Scott's Electric Watermark" 
+      class="w-[650px] max-w-none filter blur-[1px] animate-pulse"
+    />
+  </div>
+
+  <!-- Netlify Form Discovery Declaration -->
+  <form name="quote-request" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="city" />
+    <input type="text" name="urgency" />
+    <input type="text" name="services" />
+    <input type="text" name="estimatedBudget" />
+  </form>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-to-content">
+    Skip to main content
+  </a>
+
+  <!-- Header Navigation -->
+  <Header />
+
+  <!-- Main Content Body -->
+  <main id="main-content" class="flex-grow pt-24">
+    <slot />
+  </main>
+
+  <!-- Sticky Emergency Dispatch Bar (Mobile & Desktop) -->
+  <div class="fixed bottom-4 right-4 z-50 flex items-center gap-2">
+    <a 
+      href="tel:7575360478" 
+      aria-label="Call Scott's Electric Emergency Dispatch 24/7"
+      class="flex items-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-extrabold px-5 py-3.5 rounded-full shadow-gold-glow transition-all transform hover:scale-105 group"
+    >
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-700"></span>
+      </span>
+      <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+      </svg>
+      <span class="tracking-tight text-sm md:text-base">24/7 Call: (757) 536-0478</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <Footer />
+</body>
+</html>

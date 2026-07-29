@@ -1,0 +1,38 @@
+---
+interface Props {
+  cityName: string;
+  slug: string;
+  description: string;
+  population?: string;
+  icon?: string;
+}
+
+const { cityName, slug, description, population = "100k+", icon = "📍" } = Astro.props;
+---
+
+<a 
+  href={slug}
+  class="group glass-panel p-6 rounded-2xl border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 transform hover:-translate-y-1 shadow-card flex flex-col justify-between"
+>
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-2xl">{icon}</span>
+      <span class="text-[10px] font-bold tracking-widest text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded-full border border-brand-gold/20">
+        757 CITY HUB
+      </span>
+    </div>
+    <h3 class="font-heading text-xl font-bold text-white group-hover:text-brand-amber transition-colors mb-2">
+      {cityName}, VA
+    </h3>
+    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+      {description}
+    </p>
+  </div>
+
+  <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between text-xs">
+    <span class="text-brand-cyan font-semibold">24/7 Local Dispatch</span>
+    <span class="text-brand-gold font-bold group-hover:translate-x-1 transition-transform">
+      Explore City Services →
+    </span>
+  </div>
+</a>

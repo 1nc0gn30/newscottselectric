@@ -1,0 +1,103 @@
+---
+interface Props {
+  cityName?: string;
+  serviceName?: string;
+}
+
+const { cityName = "Hampton Roads", serviceName = "Electrical Services" } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Electrician",
+      "@id": "https://scottselectric.pro/#organization",
+      "name": "Scott's Electric",
+      "url": "https://scottselectric.pro",
+      "logo": "https://scottselectric.pro/assets/images/scotts_electric_logo.png",
+      "image": "https://scottselectric.pro/assets/images/hero_electrician.png",
+      "telephone": "+1-757-536-0478",
+      "email": "info@scottselectric.pro",
+      "priceRange": "$$",
+      "description": `Top-rated Master Electrician serving ${cityName} and all 7 cities of Hampton Roads (757). Specializing in electrical panel upgrades, EV chargers, generators, custom lighting, and 24/7 emergency repair.`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": cityName === "Hampton Roads" ? "Virginia Beach" : cityName,
+        "addressRegion": "VA",
+        "postalCode": "23451",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.8529,
+        "longitude": -75.9780
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Virginia Beach" },
+        { "@type": "City", "name": "Norfolk" },
+        { "@type": "City", "name": "Chesapeake" },
+        { "@type": "City", "name": "Newport News" },
+        { "@type": "City", "name": "Hampton" },
+        { "@type": "City", "name": "Portsmouth" },
+        { "@type": "City", "name": "Suffolk" },
+        { "@type": "AdministrativeArea", "name": "Hampton Roads" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "248",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Electrical Services Catalog",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Electrical Panel Upgrades",
+              "description": "200A and 400A smart circuit breaker panel installations and updates."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "EV Charger Installation",
+              "description": "Level 2 home and commercial electric vehicle charging station setups."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Whole Home Backup Generator Installation",
+              "description": "Automatic standby generators for storm protection in 757 area."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "24/7 Emergency Electrical Repair",
+              "description": "Immediate electrician dispatch for outage, sparking, or breaker failures."
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

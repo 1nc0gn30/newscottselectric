@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+---
+
+<Layout 
+  title="Contact Scott's Electric | 24/7 Dispatch (757) 536-0478"
+  description="Contact Scott's Electric for electrical service, 24/7 emergency repair, or free estimates across Virginia Beach, Norfolk, Chesapeake, and all 7 cities."
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+        24/7 Dispatch & Inquiries
+      </span>
+      <h1 class="font-heading text-4xl sm:text-6xl font-extrabold text-white mt-4">
+        Contact <span class="gold-gradient-text">Scott's Electric</span>
+      </h1>
+      <p class="mt-4 text-base text-gray-300 max-w-2xl mx-auto">
+        Need an electrician fast or planning an upcoming installation? Connect with our team serving all 7 cities of 757.
+      </p>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <a href="tel:7575360478" class="glass-panel p-6 rounded-2xl border border-gray-800 hover:border-brand-gold transition-all text-center">
+          <div class="text-3xl mb-2">📞</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Call / Text 24/7</div>
+          <div class="text-lg font-extrabold text-white mt-1">(757) 536-0478</div>
+        </a>
+        <a href="mailto:info@scottselectric.pro" class="glass-panel p-6 rounded-2xl border border-gray-800 hover:border-brand-gold transition-all text-center">
+          <div class="text-3xl mb-2">✉️</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-cyan">Email Support</div>
+          <div class="text-sm font-bold text-white mt-1">info@scottselectric.pro</div>
+        </a>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 text-center">
+          <div class="text-3xl mb-2">📍</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Service Area</div>
+          <div class="text-sm font-bold text-white mt-1">All 7 Cities of 757</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+</Layout>

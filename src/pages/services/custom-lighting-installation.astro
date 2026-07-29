@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../../components/InteractiveQuoteCalculator.jsx';
+import AEOFAQ from '../../components/AEOFAQ.astro';
+---
+
+<Layout 
+  title="Recessed Lighting Installation & Custom LED Electrician 757"
+  description="Architectural LED recessed lighting, cove lights, outdoor landscape lighting & dimmers in Virginia Beach, Norfolk, Chesapeake & 757 area."
+  serviceName="Custom Lighting Installation"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+            💡 Architectural Ambiance & Design
+          </span>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+            Custom Recessed & <br />
+            <span class="gold-gradient-text">Architectural Lighting</span>
+          </h1>
+          <p class="mt-4 text-base text-gray-300 leading-relaxed">
+            Elevate your home's aesthetic with energy-efficient LED recessed lighting, under-cabinet illumination, accent cove lighting, and smart dimming controls.
+          </p>
+          <div class="mt-8">
+            <a href="tel:7575360478" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+              Schedule Lighting Design Quote →
+            </a>
+          </div>
+        </div>
+        <div class="relative rounded-3xl overflow-hidden shadow-card border border-gray-800">
+          <img src="/assets/images/custom_lighting.png" alt="Custom Recessed Lighting Design" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ title="Custom Lighting FAQ" />
+</Layout>

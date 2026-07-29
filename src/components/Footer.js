@@ -40,7 +40,7 @@ const Footer = () => {
               Connect With Us Today
             </Typography>
             <Typography variant="body2" sx={{ color: '#a8a8a8', fontSize: '1rem', fontWeight: 500, mb: 1 }}>
-              info@scottselectric.com
+              info@scottselectric.pro
             </Typography>
             <Typography variant="body2" sx={{ color: '#a8a8a8', fontSize: '1rem', fontWeight: 500 }}>
               (123) 456-7890
@@ -66,7 +66,7 @@ const Footer = () => {
             >
               <IconButton
                 component={Link}
-                href="mailto:info@scottselectric.com"
+                href="mailto:info@scottselectric.pro"
                 sx={{
                   color: '#e0e0e0',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',

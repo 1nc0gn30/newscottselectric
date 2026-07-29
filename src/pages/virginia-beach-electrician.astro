@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AEOFAQ from '../components/AEOFAQ.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+
+const cityFaqs = [
+  {
+    question: "How fast can an electrician arrive in Virginia Beach?",
+    answer: "Scott's Electric offers 24/7 emergency dispatch in Virginia Beach with average arrival times under 45 minutes across Oceanfront, Town Center, Great Neck, Kempsville, Red Mill, and Lynnhaven."
+  },
+  {
+    question: "Do I need a city permit for an EV charger in Virginia Beach?",
+    answer: "Yes, Virginia Beach requires an electrical permit for Level 2 EV charger installations and 200A panel upgrades. Scott's Electric handles all city permitting, filing, and municipal code inspection scheduling for you."
+  },
+  {
+    question: "Why are generator installations popular for Virginia Beach homes?",
+    answer: "Coastal Virginia Beach frequently experiences hurricane season power outages and coastal storms. Whole-home standby generators provide automatic backup power within seconds to keep HVAC, refrigeration, and medical devices operational."
+  }
+];
+---
+
+<Layout 
+  title="Electrician in Virginia Beach VA | 24/7 Emergency Repair & Panel Upgrades"
+  description="Licensed Master Electrician in Virginia Beach, VA. 24/7 emergency repairs, 200A panel upgrades, Tesla EV chargers & whole home standby generators. Call (757) 536-0478."
+  cityName="Virginia Beach"
+>
+  
+  <!-- City Hero Header -->
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+          📍 Virginia Beach, VA Electrical Services
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+          Top-Rated Electrician in <br />
+          <span class="gold-gradient-text">Virginia Beach, VA</span>
+        </h1>
+        <p class="mt-4 text-base text-gray-300 leading-relaxed">
+          From Oceanfront luxury homes to Sandbridge, Great Neck, Kempsville, and Pembroke Town Center—Scott's Electric provides 24/7 licensed Master Electrician solutions tailored to Virginia Beach homes and commercial properties.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#quote" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+            Get Virginia Beach Estimate →
+          </a>
+          <a href="tel:7575360478" class="border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-black font-extrabold px-6 py-3 rounded-xl text-xs">
+            📞 24/7 VB Dispatch: (757) 536-0478
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Specific Services Grid -->
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-white mb-8">
+        Popular Electrical Services in Virginia Beach
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">⚡</div>
+          <h3 class="font-heading text-xl font-bold text-white">200A & 400A Panel Upgrades</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Upgrade aging breaker boxes to accommodate modern central air conditioning, hot tubs, and heavy appliances in VB coastal homes.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🚘</div>
+          <h3 class="font-heading text-xl font-bold text-white">Level 2 EV Charger Setup</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Dedicated garage circuits and weatherized exterior charging posts for Tesla, Ford Lightning, and all electric vehicles.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🔋</div>
+          <h3 class="font-heading text-xl font-bold text-white">Standby Generator Installs</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Hurricane and Nor'easter backup power solutions with automatic transfer switches for uninterrupted power.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Calculator -->
+  <section id="quote" class="py-16 bg-brand-card/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <!-- City AEO FAQ -->
+  <AEOFAQ faqs={cityFaqs} title="Virginia Beach Electrical FAQ" cityName="Virginia Beach" />
+
+</Layout>

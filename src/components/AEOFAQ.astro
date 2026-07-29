@@ -1,0 +1,90 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs?: FAQItem[];
+  title?: string;
+  cityName?: string;
+}
+
+const defaultFaqs: FAQItem[] = [
+  {
+    question: "Which areas in Hampton Roads does Scott's Electric serve?",
+    answer: "Scott's Electric serves all 7 cities of the 757 area code: Virginia Beach, Norfolk, Chesapeake, Newport News, Hampton, Portsmouth, and Suffolk. We provide 24/7 residential and commercial emergency dispatch throughout Coastal Virginia."
+  },
+  {
+    question: "Why should I upgrade my electrical panel to 200 Amps in 757?",
+    answer: "Modern homes in Hampton Roads require 200 Amps or higher to safely power Level 2 EV chargers, central HVAC heat pumps, hot tubs, high-capacity kitchen appliances, and home automation systems without tripping breakers or overheating."
+  },
+  {
+    question: "How long does a Level 2 EV charger installation take?",
+    answer: "Most home EV charger installations take between 2 to 4 hours. Scott's Electric handles panel capacity assessment, dedicated circuit wiring, NEMA outlet or hardwire installation, and local city permitting for all 7 cities."
+  },
+  {
+    question: "Are your electricians licensed and insured in Virginia?",
+    answer: "Yes, Scott's Electric employs fully licensed Virginia Master Electricians (VA Class A License). All work strictly adheres to the National Electrical Code (NEC) and local municipal building codes."
+  },
+  {
+    question: "What should I do during an electrical emergency or power outage?",
+    answer: "If you experience burning odors, electrical sparks, buzzing breakers, or localized power loss, turn off your main breaker if safe and call Scott's Electric 24/7 emergency dispatch immediately at (757) 536-0478."
+  }
+];
+
+const { faqs = defaultFaqs, title = "Frequently Asked Questions (757 Electrical Guide)", cityName = "Hampton Roads" } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section class="py-16 bg-brand-card/50 border-t border-b border-brand-border">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20">
+        Answer Engine Optimized (AEO)
+      </span>
+      <h2 class="font-heading text-2xl md:text-4xl font-extrabold text-white mt-3">
+        {title}
+      </h2>
+      <p class="text-sm text-brand-muted mt-2">
+        Direct expert answers for homeowners and businesses in {cityName}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="group glass-panel rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden border border-gray-800 hover:border-brand-gold/40 transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+            <h3 class="font-heading text-base md:text-lg font-bold text-white group-open:text-brand-amber transition-colors flex items-center gap-3">
+              <span class="text-brand-gold font-extrabold">Q.</span>
+              {faq.question}
+            </h3>
+            <span class="ml-4 shrink-0 transition duration-300 group-open:-rotate-180">
+              <svg class="w-5 h-5 text-brand-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-4 pt-3 border-t border-gray-800/80 text-sm leading-relaxed text-gray-300">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Inject FAQPage Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

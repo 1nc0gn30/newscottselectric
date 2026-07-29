@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../../components/InteractiveQuoteCalculator.jsx';
+import AEOFAQ from '../../components/AEOFAQ.astro';
+
+const faqs = [
+  {
+    question: "When should I upgrade my electrical panel from 100A to 200A?",
+    answer: "If your breakers trip frequently, you plan to install an EV charger, hot tub, central heat pump, or major kitchen appliances, upgrading to a 200-amp panel provides safe and reliable power capacity."
+  },
+  {
+    question: "How long does an electrical panel upgrade take?",
+    answer: "A complete main panel replacement takes between 4 to 8 hours. Scott's Electric coordinates with Dominion Energy for power disconnect/reconnect to minimize household downtime."
+  }
+];
+---
+
+<Layout 
+  title="200 Amp Electrical Panel Upgrade & Breaker Box Replacement 757"
+  description="Upgrade your electrical breaker box to 200A or 400A in Virginia Beach, Norfolk, Chesapeake & 757 area. Licensed Master Electricians, code compliant."
+  serviceName="Electrical Panel Upgrades"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+            ⚡ Electrical Capacity & Safety
+          </span>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+            200A & 400A Smart <br />
+            <span class="gold-gradient-text">Electrical Panel Upgrades</span>
+          </h1>
+          <p class="mt-4 text-base text-gray-300 leading-relaxed">
+            Power modern living in Hampton Roads with a state-of-the-art circuit breaker panel installation. Designed to eliminate breaker trips, support EV chargers, and protect sensitive smart home electronics.
+          </p>
+          <div class="mt-8 flex gap-4">
+            <a href="tel:7575360478" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+              Schedule Panel Inspection →
+            </a>
+          </div>
+        </div>
+        <div class="relative rounded-3xl overflow-hidden shadow-card border border-gray-800">
+          <img src="/assets/images/panel_upgrade.png" alt="200 Amp Electrical Panel Upgrade" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ faqs={faqs} title="Panel Upgrade FAQ" />
+</Layout>

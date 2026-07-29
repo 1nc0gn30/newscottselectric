@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InteractiveQuoteCalculator from '../../components/InteractiveQuoteCalculator.jsx';
+import AEOFAQ from '../../components/AEOFAQ.astro';
+
+const faqs = [
+  {
+    question: "Which EV charging stations do you install?",
+    answer: "We install all Level 2 home EV chargers including Tesla Wall Connector, ChargePoint Home Flex, Emporia, JuiceBox, Wallbox Pulsar, and NEMA 14-50 heavy duty outlets."
+  },
+  {
+    question: "Can my current electrical panel handle an EV charger?",
+    answer: "We perform a digital load calculation prior to installation. If your panel lacks capacity, we offer seamless 200A panel upgrades or smart load-sharing switches."
+  }
+];
+---
+
+<Layout 
+  title="Level 2 EV Charger Installation in Virginia Beach & 757 Area"
+  description="Licensed Level 2 EV Charger Installation for Tesla, Rivian, Ford, Chevy in Virginia Beach, Norfolk, Chesapeake & 757 area. Call (757) 536-0478."
+  serviceName="EV Charger Installation"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+            🚘 Clean Electric Vehicle Power
+          </span>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+            Level 2 Home <br />
+            <span class="gold-gradient-text">EV Charger Installation</span>
+          </h1>
+          <p class="mt-4 text-base text-gray-300 leading-relaxed">
+            Charge your electric vehicle up to 7x faster at home. Professional Level 2 charger installation, dedicated 240V circuit wiring, permit handling, and safety inspections across all 7 cities of 757.
+          </p>
+          <div class="mt-8 flex gap-4">
+            <a href="tel:7575360478" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+              Book EV Charger Installation →
+            </a>
+          </div>
+        </div>
+        <div class="relative rounded-3xl overflow-hidden shadow-card border border-gray-800">
+          <img src="/assets/images/ev_charger.png" alt="Level 2 EV Charging Station Installation" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ faqs={faqs} title="EV Charger Installation FAQ" />
+</Layout>

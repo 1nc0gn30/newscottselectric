@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AEOFAQ from '../components/AEOFAQ.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+---
+
+<Layout 
+  title="Electrician in Newport News VA | 24/7 Peninsula Electrical Services"
+  description="Licensed electrician in Newport News, VA serving Oyster Point, Denbigh & Hilton Village. 24/7 emergency electrical repair, 200A panel upgrades & surge protection."
+  cityName="Newport News"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+          🏗️ Newport News Peninsula Electrical Services
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+          Peninsula Electrician in <br />
+          <span class="gold-gradient-text">Newport News, VA</span>
+        </h1>
+        <p class="mt-4 text-base text-gray-300 leading-relaxed">
+          Serving City Center at Oyster Point, Hilton Village, Denbigh, Hidenwood, and Menchville. Scott's Electric brings fast Master Electrician dispatch to Peninsula homes and commercial facilities.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#quote" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+            Get Newport News Quote →
+          </a>
+          <a href="tel:7575360478" class="border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-black font-extrabold px-6 py-3 rounded-xl text-xs">
+            📞 24/7 Peninsula Line: (757) 536-0478
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote" class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ cityName="Newport News" />
+</Layout>

@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AEOFAQ from '../components/AEOFAQ.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+
+const cityFaqs = [
+  {
+    question: "Do you specialize in historic home wiring in Norfolk (Ghent / Colonial Place)?",
+    answer: "Yes! Scott's Electric has extensive experience updating knob-and-tube, cloth wiring, and outdated fuse boxes in historic Ghent, Freemason, and Colonial Place homes while preserving original architectural charm."
+  },
+  {
+    question: "How fast can you respond to commercial electrical emergencies in Norfolk?",
+    answer: "We provide 24/7 priority emergency dispatch throughout Downtown Norfolk, Wards Corner, Ocean View, and military base commercial corridors with typical arrival within 30 to 45 minutes."
+  }
+];
+---
+
+<Layout 
+  title="Electrician in Norfolk VA | 24/7 Emergency & Historic Home Rewiring"
+  description="Top-rated licensed electrician in Norfolk, VA. 24/7 emergency repair, Ghent historic home rewiring, 200A breaker panel upgrades & commercial electrical in Norfolk."
+  cityName="Norfolk"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+          ⚓ Norfolk, VA Electrical Services
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+          Licensed Electrician in <br />
+          <span class="gold-gradient-text">Norfolk, Virginia</span>
+        </h1>
+        <p class="mt-4 text-base text-gray-300 leading-relaxed">
+          From historic Ghent rewiring to Downtown commercial offices, Ocean View waterfront homes, and Larchmont—Scott's Electric delivers code-compliant Master Electrician solutions in Norfolk.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#quote" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+            Get Norfolk Estimate →
+          </a>
+          <a href="tel:7575360478" class="border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-black font-extrabold px-6 py-3 rounded-xl text-xs">
+            📞 24/7 Norfolk Dispatch: (757) 536-0478
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-white mb-8">
+        Norfolk Electrical Solutions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🏛️</div>
+          <h3 class="font-heading text-xl font-bold text-white">Historic Home Rewiring</h3>
+          <p class="text-xs text-gray-300">
+            Safe removal and replacement of obsolete knob-and-tube or ungrounded wiring in historic Ghent residences.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🏢</div>
+          <h3 class="font-heading text-xl font-bold text-white">Commercial Electrical</h3>
+          <p class="text-xs text-gray-300">
+            Retail, office, and industrial lighting, data cabling, 3-phase power, and safety compliance audits.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🚨</div>
+          <h3 class="font-heading text-xl font-bold text-white">24/7 Emergency Dispatch</h3>
+          <p class="text-xs text-gray-300">
+            Immediate dispatch for burning odors, power surges, or complete breaker loss in Norfolk.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote" class="py-16 bg-brand-card/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ faqs={cityFaqs} title="Norfolk Electrical Guide & FAQ" cityName="Norfolk" />
+</Layout>

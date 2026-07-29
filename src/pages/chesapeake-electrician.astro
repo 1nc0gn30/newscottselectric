@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AEOFAQ from '../components/AEOFAQ.astro';
+import InteractiveQuoteCalculator from '../components/InteractiveQuoteCalculator.jsx';
+
+const cityFaqs = [
+  {
+    question: "Which Chesapeake neighborhoods do you serve?",
+    answer: "We serve all of Chesapeake including Greenbrier, Great Bridge, Western Branch, Deep Creek, South Norfolk, Hickory, and Grassfield."
+  },
+  {
+    question: "Can you install electrical wiring for a hot tub or swimming pool in Chesapeake?",
+    answer: "Yes, we install dedicated GFCI subpanels, underground conduit, bonding grids, and automatic heating controls for all residential pools and hot tubs."
+  }
+];
+---
+
+<Layout 
+  title="Electrician in Chesapeake VA | 24/7 Electrical Repair & Pool Wiring"
+  description="Licensed Master Electrician in Chesapeake, VA serving Greenbrier, Great Bridge & Western Branch. Subpanels, EV chargers, hot tub wiring & 200A panel replacement."
+  cityName="Chesapeake"
+>
+  <section class="py-16 bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20 uppercase tracking-widest">
+          🏡 Chesapeake, VA Electrical Services
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-4 leading-tight">
+          Reliable Electrician in <br />
+          <span class="gold-gradient-text">Chesapeake, Virginia</span>
+        </h1>
+        <p class="mt-4 text-base text-gray-300 leading-relaxed">
+          From Greenbrier commercial hubs to suburban homes in Great Bridge, Western Branch, Hickory, and Deep Creek—Scott's Electric offers fast, certified electrical repair and upgrades.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#quote" class="bg-brand-gold hover:bg-brand-goldHover text-black font-extrabold px-6 py-3 rounded-xl text-xs shadow-gold-glow">
+            Get Chesapeake Estimate →
+          </a>
+          <a href="tel:7575360478" class="border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-black font-extrabold px-6 py-3 rounded-xl text-xs">
+            📞 24/7 Chesapeake Dispatch: (757) 536-0478
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-white mb-8">
+        Chesapeake Residential & Commercial Care
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🏊</div>
+          <h3 class="font-heading text-xl font-bold text-white">Pool & Spa Wiring</h3>
+          <p class="text-xs text-gray-300">
+            Dedicated GFCI breakers, bonding, underwater lighting, and heater circuits for Chesapeake outdoor living spaces.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">🔌</div>
+          <h3 class="font-heading text-xl font-bold text-white">Main Breaker Upgrades</h3>
+          <p class="text-xs text-gray-300">
+            Replace dangerous Federal Pacific or Zinsco panels with modern Siemens or Square D 200A breaker boxes.
+          </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+          <div class="text-3xl">💡</div>
+          <h3 class="font-heading text-xl font-bold text-white">Smart Lighting Setup</h3>
+          <p class="text-xs text-gray-300">
+            Voice-controlled lighting, automated dimmers, and energy-saving LED transformations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote" class="py-16 bg-brand-card/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <InteractiveQuoteCalculator client:visible />
+    </div>
+  </section>
+
+  <AEOFAQ faqs={cityFaqs} title="Chesapeake Electrical FAQ" cityName="Chesapeake" />
+</Layout>
