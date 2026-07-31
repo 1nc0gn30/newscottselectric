@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scottselectric.pro/sitemap-index.xml
-Sitemap: https://scottselectric.pro/sitemap-0.xml
 Sitemap: https://scottselectric.pro/sitemap.xml
